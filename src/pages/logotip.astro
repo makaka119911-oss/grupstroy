@@ -1,73 +1,73 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Logo from '../components/Logo.astro';
-import LogoMarkAtelier from '../components/logo/LogoMarkAtelier.astro';
-import LogoMarkChisel from '../components/logo/LogoMarkChisel.astro';
-import LogoMarkGrain from '../components/logo/LogoMarkGrain.astro';
-import LogoMarkJoinery from '../components/logo/LogoMarkJoinery.astro';
-import LogoMarkMitre from '../components/logo/LogoMarkMitre.astro';
-import LogoMarkMonolith from '../components/logo/LogoMarkMonolith.astro';
+import LogoMarkChampagne from '../components/logo/LogoMarkChampagne.astro';
+import LogoMarkCognac from '../components/logo/LogoMarkCognac.astro';
+import LogoMarkMalt from '../components/logo/LogoMarkMalt.astro';
+import LogoMarkSeal from '../components/logo/LogoMarkSeal.astro';
+import LogoMarkVodka from '../components/logo/LogoMarkVodka.astro';
+import LogoMarkWhisky from '../components/logo/LogoMarkWhisky.astro';
 import '../styles/logotip.css';
 
 const options = [
   {
-    id: 'atelier',
+    id: 'cognac',
     tag: 'Вариант A',
-    title: 'Atelier',
-    desc: 'Минимализм Apple-уровня: чистая G в квадрате. Спокойно, дорого, не кричит.',
-    traits: ['Премиум', 'Универсальный', 'На века'],
-    Mark: LogoMarkAtelier,
+    title: 'Cognac',
+    desc: 'Овальная монограмма и золото — спокойная роскошь в духе Hennessy. Серьёзно, без лишней декоративности.',
+    traits: ['Hennessy', 'Премиум', 'Классика'],
+    Mark: LogoMarkCognac,
   },
   {
-    id: 'joinery',
+    id: 'whisky',
     tag: 'Вариант B',
-    title: 'Joinery',
-    desc: 'Шестигранник и шип-паз — сразу видно столярку и точность соединений.',
-    traits: ['Ремесло', 'Характер', 'Запоминается'],
-    Mark: LogoMarkJoinery,
+    title: 'Whisky',
+    desc: 'Диагональная полоса и строгий квадрат — динамика Johnnie Walker, но сдержанно и по-взрослому.',
+    traits: ['Johnnie Walker', 'Сила', 'Графика'],
+    Mark: LogoMarkWhisky,
   },
   {
-    id: 'monolith',
+    id: 'malt',
     tag: 'Вариант C',
-    title: 'Monolith',
-    desc: 'Торец массива + монограмма GS. Брутальнее, индустриальнее, «мы — производство».',
-    traits: ['Массив', 'Сила', 'Бренд'],
-    Mark: LogoMarkMonolith,
+    title: 'Malt',
+    desc: 'Геральдический щит — наследие и ремесло, как у The Macallan: статус без крика.',
+    traits: ['Macallan', 'Герб', 'Массив'],
+    Mark: LogoMarkMalt,
   },
   {
-    id: 'grain',
+    id: 'vodka',
     tag: 'Вариант D',
-    title: 'Grain',
-    desc: 'Годовые кольца торца — натуральное дерево, спокойная премиальность без лишних деталей.',
-    traits: ['Массив', 'Природа', 'Тепло'],
-    Mark: LogoMarkGrain,
+    title: 'Vodka',
+    desc: 'Тонкие кольца и воздух — минимализм Beluga: чистая форма, дорогая простота.',
+    traits: ['Beluga', 'Минимализм', 'Точность'],
+    Mark: LogoMarkVodka,
   },
   {
-    id: 'mitre',
+    id: 'champagne',
     tag: 'Вариант E',
-    title: 'Mitre',
-    desc: 'Угол рамы под 45° — классическая столярка, интерьер и точность стыка.',
-    traits: ['Рама', 'Интерьер', 'Точность'],
-    Mark: LogoMarkMitre,
+    title: 'Champagne',
+    desc: 'Звезда и гербовый щит — праздничная строгость Moët: свет, но не театр.',
+    traits: ['Moët', 'Статус', 'Свет'],
+    Mark: LogoMarkChampagne,
   },
   {
-    id: 'chisel',
+    id: 'seal',
     tag: 'Вариант F',
-    title: 'Chisel',
-    desc: 'Стамеска и стружка — живое ремесло, ручная работа и мастерская.',
-    traits: ['Ремесло', 'Ручная работа', 'Характер'],
-    Mark: LogoMarkChisel,
+    title: 'Seal',
+    desc: 'Восковая печать с монограммой — доверие и ручная работа, отсылка к Rémy Martin.',
+    traits: ['Rémy Martin', 'Печать', 'Доверие'],
+    Mark: LogoMarkSeal,
   },
 ] as const;
 ---
 
-<Layout title="Выбор логотипа — GRUPSTROY" description="Шесть вариантов логотипа GRUPSTROY на одном экране">
+<Layout title="Выбор логотипа — GRUPSTROY" description="Шесть премиальных вариантов логотипа GRUPSTROY">
   <div class="logotip-page">
     <div class="container">
       <a class="logotip-back" href="/">← На главную</a>
       <header class="logotip-hero">
         <h1>Выбери логотип</h1>
-        <p>Шесть концептов на одном экране. Нажми «Выбрать» — вариант сохранится, напиши в чат букву A–F.</p>
+        <p>Шесть строгих концептов в духе премиальных брендов. Нажми «Выбрать» — напиши в чат букву A–F.</p>
       </header>
 
       <div class="logotip-grid">
@@ -103,12 +103,12 @@ const options = [
 <script>
   const STORAGE_KEY = 'grupstroy-logo-variant';
   const labels: Record<string, string> = {
-    atelier: 'A — Atelier',
-    joinery: 'B — Joinery',
-    monolith: 'C — Monolith',
-    grain: 'D — Grain',
-    mitre: 'E — Mitre',
-    chisel: 'F — Chisel',
+    cognac: 'A — Cognac',
+    whisky: 'B — Whisky',
+    malt: 'C — Malt',
+    vodka: 'D — Vodka',
+    champagne: 'E — Champagne',
+    seal: 'F — Seal',
   };
 
   const toast = document.getElementById('logotipToast');

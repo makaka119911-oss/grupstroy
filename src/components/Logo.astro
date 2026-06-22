@@ -1,27 +1,27 @@
 ---
-import LogoMarkAtelier from './logo/LogoMarkAtelier.astro';
-import LogoMarkChisel from './logo/LogoMarkChisel.astro';
-import LogoMarkGrain from './logo/LogoMarkGrain.astro';
-import LogoMarkJoinery from './logo/LogoMarkJoinery.astro';
-import LogoMarkMitre from './logo/LogoMarkMitre.astro';
-import LogoMarkMonolith from './logo/LogoMarkMonolith.astro';
+import LogoMarkChampagne from './logo/LogoMarkChampagne.astro';
+import LogoMarkCognac from './logo/LogoMarkCognac.astro';
+import LogoMarkMalt from './logo/LogoMarkMalt.astro';
+import LogoMarkSeal from './logo/LogoMarkSeal.astro';
+import LogoMarkVodka from './logo/LogoMarkVodka.astro';
+import LogoMarkWhisky from './logo/LogoMarkWhisky.astro';
 
-export type LogoVariant = 'atelier' | 'joinery' | 'monolith' | 'grain' | 'mitre' | 'chisel';
+export type LogoVariant = 'cognac' | 'whisky' | 'malt' | 'vodka' | 'champagne' | 'seal';
 
 interface Props {
   compact?: boolean;
   variant?: LogoVariant;
 }
 
-const { compact = false, variant = 'joinery' } = Astro.props;
+const { compact = false, variant = 'cognac' } = Astro.props;
 
 const marks = {
-  atelier: LogoMarkAtelier,
-  joinery: LogoMarkJoinery,
-  monolith: LogoMarkMonolith,
-  grain: LogoMarkGrain,
-  mitre: LogoMarkMitre,
-  chisel: LogoMarkChisel,
+  cognac: LogoMarkCognac,
+  whisky: LogoMarkWhisky,
+  malt: LogoMarkMalt,
+  vodka: LogoMarkVodka,
+  champagne: LogoMarkChampagne,
+  seal: LogoMarkSeal,
 } as const;
 
 const Mark = marks[variant];

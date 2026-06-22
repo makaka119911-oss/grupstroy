@@ -7,33 +7,22 @@ const blocks = categories.map((cat, i) => ({
   ...cat,
   num: String(i + 1).padStart(2, '0'),
   products: getProductsByCategory(cat.id).slice(0, 3),
-  heroImage: getProductsByCategory(cat.id)[0]?.image ?? '/images/hero.jpg',
+  heroImage: getProductsByCategory(cat.id)[Math.min(2, getProductsByCategory(cat.id).length - 1)]?.image ?? '/images/hero.jpg',
 }));
 ---
 
 <Layout title="GRUPSTROY — столярная мануфактура" home>
   <div class="home-scroll" id="homeScroll">
-    <!-- HERO — эффект «маска» как в motion-сайтах: курсор открывает мастерскую -->
+    <!-- HERO -->
     <section class="snap-panel snap-panel--hero" id="panel-hero">
-      <div class="hero-reveal" id="heroReveal">
-        <div class="hero-reveal__layer hero-reveal__layer--finish">
-          <img
-            src="/images/hero.jpg"
-            alt=""
-            width="1920"
-            height="1080"
-            fetchpriority="high"
-          />
-        </div>
-        <div class="hero-reveal__layer hero-reveal__layer--craft" id="heroCraft">
-          <img
-            src="/images/catalog/ostrov-tortsevaya-stoleshnitsa.jpg"
-            alt=""
-            width="1920"
-            height="1080"
-          />
-        </div>
-        <div class="hero-reveal__ring" id="heroRing" aria-hidden="true"></div>
+      <div class="snap-panel__bg">
+        <img
+          src="/images/hero.jpg"
+          alt=""
+          width="1920"
+          height="1080"
+          fetchpriority="high"
+        />
         <div class="snap-panel__overlay snap-panel__overlay--hero"></div>
       </div>
       <div class="snap-panel__content container hero-content">
@@ -47,7 +36,6 @@ const blocks = categories.map((cat, i) => ({
           <a class="btn btn--glass btn--lg" href="/zayavka">Расчёт за 1 день</a>
         </div>
         <p class="hero-individual"><strong>ИНДИВИДУАЛЬНО</strong> — любой чертёж, любая порода</p>
-        <p class="hero-hint-desktop">Наведите курсор — загляните в мастерскую</p>
       </div>
       <a class="scroll-hint" href="#panel-blocks" data-nav-link aria-label="Дальше">
         <span></span>
@@ -67,7 +55,7 @@ const blocks = categories.map((cat, i) => ({
           разделу на экран.
         </p>
         <p class="reveal" style="margin-bottom: 20px;">
-          <a href="/logotip" class="intro-chip" style="display: inline-flex;">Выбрать логотип (6 вариантов) →</a>
+          <a href="/logotip" class="intro-chip" style="display: inline-flex;">Выбрать логотип (премиум A–F) →</a>
         </p>
         <div class="intro-chips reveal">
           {categories.map((c, i) => (
@@ -166,28 +154,6 @@ const blocks = categories.map((cat, i) => ({
 
 <script>
   const homeScroll = document.getElementById('homeScroll');
-  const heroReveal = document.getElementById('heroReveal');
-  const heroCraft = document.getElementById('heroCraft');
-  const heroRing = document.getElementById('heroRing');
-
-  if (heroReveal && heroCraft && heroRing && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    const radius = 160;
-
-    const move = (x: number, y: number) => {
-      const rect = heroReveal.getBoundingClientRect();
-      const px = x - rect.left;
-      const py = y - rect.top;
-      heroCraft.style.clipPath = `circle(${radius}px at ${px}px ${py}px)`;
-      heroRing.style.transform = `translate(${px - radius}px, ${py - radius}px)`;
-      heroRing.style.opacity = '1';
-    };
-
-    heroReveal.addEventListener('mousemove', (e) => move(e.clientX, e.clientY));
-    heroReveal.addEventListener('mouseleave', () => {
-      heroCraft.style.clipPath = 'circle(0px at 50% 50%)';
-      heroRing.style.opacity = '0';
-    });
-  }
 
   const revealRoot = homeScroll ?? undefined;
   const revealObserver = new IntersectionObserver(
