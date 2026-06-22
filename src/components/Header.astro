@@ -33,19 +33,29 @@ const dots = home
     <Logo />
     <nav class="nav" aria-label="Меню">
       {nav.map((item) => (
-        <a href={item.href}>{item.label}</a>
+        <a href={item.href} data-nav-link>{item.label}</a>
       ))}
     </nav>
-    <a class="btn btn--primary btn--sm header__cta" href="/zayavka">Рассчитать</a>
-    <button class="burger" type="button" aria-label="Меню" aria-expanded="false" id="burger">
-      <span></span><span></span><span></span>
-    </button>
+    <div class="header__actions">
+      <a class="btn btn--primary btn--sm header__cta" href="/zayavka">Рассчитать</a>
+      <button
+        class="burger"
+        type="button"
+        aria-label="Открыть меню"
+        aria-expanded="false"
+        aria-controls="mobileNav"
+        id="burger"
+      >
+        <span></span><span></span><span></span>
+      </button>
+    </div>
   </div>
-  <nav class="mobile-nav" id="mobileNav" hidden>
+  <div class="mobile-nav__backdrop" id="mobileBackdrop" hidden></div>
+  <nav class="mobile-nav" id="mobileNav" aria-label="Мобильное меню" hidden>
     {nav.map((item) => (
-      <a href={item.href}>{item.label}</a>
+      <a href={item.href} data-nav-link>{item.label}</a>
     ))}
-    <a class="btn btn--primary" href="/zayavka">Рассчитать проект</a>
+    <a class="btn btn--primary btn--wide" href="/zayavka" data-nav-link>Рассчитать проект</a>
   </nav>
 </header>
 
@@ -68,27 +78,78 @@ const dots = home
 }
 
 <script>
+  const header = document.getElementById('header');
   const burger = document.getElementById('burger');
   const mobileNav = document.getElementById('mobileNav');
-  burger?.addEventListener('click', () => {
-    const open = mobileNav?.hasAttribute('hidden');
-    if (open) {
-      mobileNav?.removeAttribute('hidden');
-      burger?.setAttribute('aria-expanded', 'true');
+  const backdrop = document.getElementById('mobileBackdrop');
+  const scroller = document.getElementById('homeScroll');
+
+  function scrollToPanel(id: string) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    if (scroller) {
+      const top = el.offsetTop - (header?.offsetHeight ?? 0);
+      scroller.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
     } else {
-      mobileNav?.setAttribute('hidden', '');
-      burger?.setAttribute('aria-expanded', 'false');
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
+  }
+
+  function openMenu() {
+    header?.classList.add('header--menu-open');
+    mobileNav?.removeAttribute('hidden');
+    backdrop?.removeAttribute('hidden');
+    burger?.setAttribute('aria-expanded', 'true');
+    burger?.setAttribute('aria-label', 'Закрыть меню');
+    document.body.classList.add('menu-open');
+  }
+
+  function closeMenu() {
+    header?.classList.remove('header--menu-open');
+    mobileNav?.setAttribute('hidden', '');
+    backdrop?.setAttribute('hidden', '');
+    burger?.setAttribute('aria-expanded', 'false');
+    burger?.setAttribute('aria-label', 'Открыть меню');
+    document.body.classList.remove('menu-open');
+  }
+
+  function isMenuOpen() {
+    return header?.classList.contains('header--menu-open') ?? false;
+  }
+
+  burger?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (isMenuOpen()) closeMenu();
+    else openMenu();
   });
-  mobileNav?.querySelectorAll('a').forEach((a) => {
-    a.addEventListener('click', () => {
-      mobileNav?.setAttribute('hidden', '');
-      burger?.setAttribute('aria-expanded', 'false');
+
+  backdrop?.addEventListener('click', closeMenu);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isMenuOpen()) closeMenu();
+  });
+
+  document.querySelectorAll('[data-nav-link]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const anchor = link as HTMLAnchorElement;
+      const href = anchor.getAttribute('href') ?? '';
+
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        scrollToPanel(href.slice(1));
+        history.replaceState(null, '', href);
+      }
+
+      closeMenu();
     });
   });
 
-  const header = document.getElementById('header');
-  const scroller = document.getElementById('homeScroll');
+  window.addEventListener('resize', () => {
+    if (window.matchMedia('(min-width: 768px)').matches && isMenuOpen()) {
+      closeMenu();
+    }
+  });
+
   if (scroller && header?.classList.contains('header--home')) {
     scroller.addEventListener(
       'scroll',
@@ -101,7 +162,7 @@ const dots = home
 
   const dots = document.getElementById('snapDots');
   const panels = document.querySelectorAll('.snap-panel');
-  if (dots && panels.length) {
+  if (dots && panels.length && scroller) {
     const btns = dots.querySelectorAll('.snap-dots__btn');
     const observer = new IntersectionObserver(
       (entries) => {
@@ -121,8 +182,7 @@ const dots = home
     btns.forEach((btn) => {
       btn.addEventListener('click', () => {
         const id = btn.getAttribute('data-target');
-        const el = id ? document.getElementById(id) : null;
-        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (id) scrollToPanel(id);
       });
     });
   }

@@ -1,0 +1,43 @@
+---
+/** Inline SVG — не зависит от /logo.svg на CDN */
+---
+<svg
+  class="logo__mark"
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 48 48"
+  width="40"
+  height="40"
+  fill="none"
+  aria-hidden="true"
+>
+  <defs>
+    <linearGradient id="gsGold" x1="8" y1="6" x2="40" y2="42" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#E8D4A8"></stop>
+      <stop offset="0.5" stop-color="#C9A86C"></stop>
+      <stop offset="1" stop-color="#8B6914"></stop>
+    </linearGradient>
+    <linearGradient id="gsWood" x1="4" y1="44" x2="44" y2="4" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5C4A3A"></stop>
+      <stop offset="1" stop-color="#3D3028"></stop>
+    </linearGradient>
+  </defs>
+  <rect
+    x="4"
+    y="4"
+    width="40"
+    height="40"
+    rx="11"
+    stroke="url(#gsGold)"
+    stroke-width="1.5"
+    fill="url(#gsWood)"
+    opacity="0.95"></rect>
+  <path
+    d="M16 14h12a6 6 0 0 1 6 6v4a6 6 0 0 1-6 6H20v-8h8a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-8V14z"
+    fill="url(#gsGold)"></path>
+  <path
+    d="M14 32 L24 22 M34 14 L24 24"
+    stroke="#E8D4A8"
+    stroke-width="1.2"
+    stroke-linecap="round"
+    opacity="0.35"></path>
+</svg>
