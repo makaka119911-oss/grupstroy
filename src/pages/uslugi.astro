@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { services, slogan } from '../data/catalog';
+---
+
+<Layout title="Услуги КД и 3D — GRUPSTROY" description="Проектирование столярных изделий под ключ">
+  <section class="section container">
+    <a class="back" href="/">← На главную</a>
+    <div class="section__head">
+      <h2>Дизайн и чертёж</h2>
+      <p>{slogan}</p>
+    </div>
+    <div class="service-list">
+      {services.map((s) => (
+        <div class="service">
+          <p class="service__num">УСЛУГА №{s.id}</p>
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </div>
+      ))}
+    </div>
+    <div style="margin-top:28px">
+      <a class="btn btn--primary btn--wide" href="/zayavka">Прислать эскиз на расчёт</a>
+    </div>
+  </section>
+</Layout>

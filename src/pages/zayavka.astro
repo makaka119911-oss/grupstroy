@@ -1,0 +1,81 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { products } from '../data/catalog';
+
+const itemParam = Astro.url.searchParams.get('item') || '';
+const prefill = products.find((p) => p.slug === itemParam);
+---
+
+<Layout title="Заявка на расчёт — GRUPSTROY" description="Укажите габариты — нарисуем чертёж и согласуем цену за 1 день">
+  <section class="section container">
+    <a class="back" href="/">← На главную</a>
+    <div class="section__head">
+      <h2>Калькулятор заявки</h2>
+      <p>
+        Укажите габариты (Д×Ш×В) и пришлите фото помещения. Мы нарисуем чертёж изделия,
+        впишем его в план комнаты и согласуем цену за 1 день. Работаем по всей РФ (доставка ТК).
+      </p>
+    </div>
+    <form class="form" id="leadForm">
+      <label class="field">
+        <span>Изделие / комментарий</span>
+        <input name="item" type="text" maxlength="200" placeholder="Например: кухонный остров" value={prefill ? `${prefill.title} — ${prefill.subtitle}` : ''} />
+      </label>
+      <div class="field">
+        <span>Габариты, мм (Д × Ш × В)</span>
+        <div class="dims">
+          <input name="length" type="number" min="0" placeholder="Длина" required />
+          <input name="width" type="number" min="0" placeholder="Ширина" required />
+          <input name="height" type="number" min="0" placeholder="Высота" required />
+        </div>
+      </div>
+      <label class="field">
+        <span>Телефон или Telegram</span>
+        <input name="contact" type="text" required maxlength="80" placeholder="+7... или @username" />
+      </label>
+      <label class="field">
+        <span>Город</span>
+        <input name="city" type="text" maxlength="80" placeholder="Москва" />
+      </label>
+      <label class="field">
+        <span>Комментарий</span>
+        <textarea name="note" rows="3" maxlength="1000" placeholder="Порода дерева, отделка, сроки..."></textarea>
+      </label>
+      <button type="submit" class="btn btn--primary btn--wide">Отправить заявку</button>
+      <p id="status" class="status" role="status"></p>
+    </form>
+  </section>
+</Layout>
+
+<script>
+  const form = document.getElementById('leadForm') as HTMLFormElement;
+  const status = document.getElementById('status');
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (status) status.textContent = 'Отправляем…';
+    const fd = new FormData(form);
+    const payload = {
+      item: fd.get('item'),
+      length: fd.get('length'),
+      width: fd.get('width'),
+      height: fd.get('height'),
+      contact: fd.get('contact'),
+      city: fd.get('city'),
+      note: fd.get('note'),
+      date: new Date().toISOString(),
+    };
+    try {
+      const res = await fetch('/api/send-telegram', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Ошибка');
+      if (status) status.textContent = '✓ Заявка отправлена! Свяжемся в течение дня.';
+      form.reset();
+    } catch (err) {
+      if (status) status.textContent = 'Ошибка: ' + (err as Error).message;
+    }
+  });
+</script>

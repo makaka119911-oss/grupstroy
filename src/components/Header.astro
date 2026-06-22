@@ -1,0 +1,55 @@
+---
+const nav = [
+  { href: '/#catalog', label: 'Каталог' },
+  { href: '/uslugi', label: 'Услуги' },
+  { href: '/zayavka', label: 'Заявка' },
+];
+---
+
+<header class="header" id="header">
+  <div class="container header__inner">
+    <a class="logo" href="/">
+      <span class="logo__mark">G</span>
+      <span class="logo__text">
+        <span class="logo__name">GRUPSTROY</span>
+        <span class="logo__sub">столярное производство</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Меню">
+      {nav.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+    <a class="btn btn--primary btn--sm header__cta" href="/zayavka">Рассчитать</a>
+    <button class="burger" type="button" aria-label="Меню" aria-expanded="false" id="burger">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobileNav" hidden>
+    {nav.map((item) => (
+      <a href={item.href}>{item.label}</a>
+    ))}
+    <a class="btn btn--primary" href="/zayavka">Рассчитать проект</a>
+  </nav>
+</header>
+
+<script>
+  const burger = document.getElementById('burger');
+  const mobileNav = document.getElementById('mobileNav');
+  burger?.addEventListener('click', () => {
+    const open = mobileNav?.hasAttribute('hidden');
+    if (open) {
+      mobileNav?.removeAttribute('hidden');
+      burger?.setAttribute('aria-expanded', 'true');
+    } else {
+      mobileNav?.setAttribute('hidden', '');
+      burger?.setAttribute('aria-expanded', 'false');
+    }
+  });
+  mobileNav?.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      mobileNav?.setAttribute('hidden', '');
+      burger?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

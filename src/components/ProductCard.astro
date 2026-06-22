@@ -1,0 +1,23 @@
+---
+import type { Product } from '../data/catalog';
+
+interface Props {
+  product: Product;
+  categoryTitle: string;
+}
+
+const { product, categoryTitle } = Astro.props;
+---
+
+<a class="card" href={`/catalog/${product.slug}`}>
+  <div class="card__img-wrap">
+    <img src={product.image} alt={product.imageAlt} loading="lazy" width="600" height="400" />
+    <span class="card__badge">ИНДИВИДУАЛЬНО</span>
+  </div>
+  <div class="card__body">
+    <p class="card__cat">{categoryTitle}</p>
+    <h3 class="card__title">{product.title}</h3>
+    <p class="card__sub">{product.subtitle}</p>
+    <p class="card__meta">{product.material} · {product.term}</p>
+  </div>
+</a>

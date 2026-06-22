@@ -1,0 +1,52 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {
+  products,
+  categories,
+  getProduct,
+  getCategory,
+  variantsBlock,
+} from '../../data/catalog';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const product = getProduct(slug!);
+if (!product) throw new Error('Product not found');
+const cat = getCategory(product.categoryId)!;
+---
+
+<Layout title={`${product.title} — GRUPSTROY`} description={product.subtitle}>
+  <article class="product container">
+    <a class="back" href={`/${cat.slug}`}>← {cat.title}</a>
+    <div class="product__layout">
+      <div class="product__media">
+        <img src={product.image} alt={product.imageAlt} width="1200" height="750" />
+      </div>
+      <div class="product__specs">
+        <p class="product__cat">{cat.title}</p>
+        <h1>{product.title}</h1>
+        <p class="product__sub">{product.subtitle}</p>
+        <table class="spec-table">
+          <tr><th>Материал</th><td>{product.material}</td></tr>
+          <tr><th>Отделка</th><td>{product.finish}</td></tr>
+          <tr><th>Срок</th><td>{product.term}</td></tr>
+          <tr><th>Цена</th><td><strong>{product.price}</strong></td></tr>
+        </table>
+        <div class="variants">
+          <strong>ВАРИАНТЫ · ИНДИВИДУАЛЬНО</strong>
+          {variantsBlock}
+        </div>
+        <div class="product__cta">
+          <a class="btn btn--primary btn--wide" href={`/zayavka?item=${product.slug}`}>Заказать расчёт</a>
+          <a class="btn btn--ghost btn--wide" href={`/${cat.slug}`}>Другие из блока</a>
+        </div>
+      </div>
+    </div>
+  </article>
+  <div class="product-bar">
+    <a class="btn btn--primary btn--wide" href={`/zayavka?item=${product.slug}`}>Рассчитать это изделие</a>
+  </div>
+</Layout>

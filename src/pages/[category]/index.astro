@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import { categories, getCategory, getProductsByCategory } from '../../data/catalog';
+
+export function getStaticPaths() {
+  return categories.map((c) => ({ params: { category: c.slug } }));
+}
+
+const { category: slug } = Astro.params;
+const cat = getCategory(slug!);
+if (!cat) throw new Error('Category not found');
+const items = getProductsByCategory(cat.id);
+---
+
+<Layout title={`${cat.title} — GRUPSTROY`} description={cat.intro}>
+  <section class="section container">
+    <a class="back" href="/">← На главную</a>
+    <p class="section__accent">{cat.accent}</p>
+    <div class="section__head">
+      <h2>{cat.title}</h2>
+      <p>{cat.intro}</p>
+    </div>
+    <div class="grid">
+      {items.map((p) => (
+        <ProductCard product={p} categoryTitle={cat.title} />
+      ))}
+    </div>
+    <p style="margin-top:24px;color:var(--muted);font-size:0.88rem">
+      Показаны 5 примеров. <strong style="color:var(--accent)">ИНДИВИДУАЛЬНО</strong> — любая геометрия по вашему чертежу.
+    </p>
+  </section>
+</Layout>

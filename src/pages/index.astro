@@ -1,0 +1,42 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { categories, slogan } from '../data/catalog';
+---
+
+<Layout title="GRUPSTROY — каталог столярных изделий на заказ">
+  <section class="hero container">
+    <p class="hero__eyebrow">Сделано руками, но по уму</p>
+    <h1>Столярные изделия любой сложности</h1>
+    <p class="hero__lead">{slogan}</p>
+    <div class="hero__actions">
+      <a class="btn btn--primary btn--lg" href="#catalog">Смотреть каталог</a>
+      <a class="btn btn--ghost btn--lg" href="/zayavka">Рассчитать за 1 день</a>
+    </div>
+    <span class="hero__chip">ИНДИВИДУАЛЬНО · любой чертёж</span>
+  </section>
+
+  <section class="section container" id="catalog">
+    <div class="section__head">
+      <h2>5 направлений · 25 примеров</h2>
+      <p>Каждый блок — не каталог ограничений, а витрина возможностей. Меняем размеры, породу и отделку под вас.</p>
+    </div>
+    <div class="tiles">
+      {categories.map((cat, i) => (
+        <a class="tile" href={`/${cat.slug}`}>
+          <span class="tile__num">Блок {i + 1}</span>
+          <p class="tile__title">{cat.title}</p>
+          <p class="tile__sub">{cat.accent}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section container">
+    <div class="section__head">
+      <h2>Дизайн и чертёж</h2>
+      <p>Нет готового проекта — разработаем КД и 3D под ключ.</p>
+    </div>
+    <a class="btn btn--primary" href="/uslugi">Услуги проектирования</a>
+  </section>
+</Layout>

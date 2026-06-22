@@ -1,0 +1,29 @@
+---
+import { slogan } from '../data/catalog';
+---
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div>
+      <p class="footer__brand">GRUPSTROY</p>
+      <p class="footer__tag">{slogan}</p>
+    </div>
+    <div>
+      <p class="footer__label">Каталог</p>
+      <a href="/kuhnya">Кухня</a>
+      <a href="/korpus">Корпусная</a>
+      <a href="/dekor">Интерьер</a>
+      <a href="/malaya-forma">Малая форма</a>
+      <a href="/sad">Сад и улица</a>
+    </div>
+    <div>
+      <p class="footer__label">Связь</p>
+      <a href="/zayavka">Оставить заявку</a>
+      <a href="/uslugi">Услуги КД и 3D</a>
+    </div>
+  </div>
+  <p class="footer__note container">
+    Фото на сайте — иллюстративные примеры. Перед публикацией заменяются на реальные работы мастерской.
+  </p>
+  <p class="footer__copy container">© {new Date().getFullYear()} GRUPSTROY</p>
+</footer>
