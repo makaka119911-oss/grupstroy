@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/brand.css';
+
+const assets = [
+  {
+    title: 'Аватар Telegram',
+    desc: '512×512 — фото канала или бота. PNG для загрузки в Telegram.',
+    preview: '/brand/telegram-avatar.png',
+    files: [
+      { label: 'PNG (рекомендуется)', href: '/brand/telegram-avatar.png', download: 'grupstroy-telegram-avatar.png' },
+      { label: 'SVG', href: '/brand/telegram-avatar.svg', download: 'grupstroy-telegram-avatar.svg' },
+    ],
+  },
+  {
+    title: 'Шапка канала',
+    desc: '1280×720 — обложка Telegram-канала. Тёмный делюкс с печатью Seal.',
+    preview: '/brand/telegram-header.png',
+    files: [
+      { label: 'PNG (рекомендуется)', href: '/brand/telegram-header.png', download: 'grupstroy-telegram-header.png' },
+      { label: 'SVG', href: '/brand/telegram-header.svg', download: 'grupstroy-telegram-header.svg' },
+    ],
+  },
+  {
+    title: 'Логотип полный',
+    desc: 'Горизонтальный знак + GRUPSTROY для документов и превью.',
+    preview: '/brand/logo-full.png',
+    files: [
+      { label: 'PNG', href: '/brand/logo-full.png', download: 'grupstroy-logo-full.png' },
+      { label: 'SVG', href: '/brand/logo-full.svg', download: 'grupstroy-logo-full.svg' },
+    ],
+  },
+  {
+    title: 'Только печать Seal',
+    desc: 'Знак GS без текста — иконка, favicon, мелкие форматы.',
+    preview: '/brand/seal-mark.png',
+    files: [
+      { label: 'PNG', href: '/brand/seal-mark.png', download: 'grupstroy-seal-mark.png' },
+      { label: 'SVG', href: '/brand/seal-mark.svg', download: 'grupstroy-seal-mark.svg' },
+    ],
+  },
+];
+---
+
+<Layout title="Бренд — GRUPSTROY" description="Скачать логотип Seal и шапку для Telegram">
+  <div class="brand-page">
+    <div class="container">
+      <a class="brand-back" href="/">← На главную</a>
+      <header class="brand-hero">
+        <p class="brand-hero__tag">Вариант F · Seal</p>
+        <h1>Фирменный стиль</h1>
+        <p>Скачай аватар и шапку для Telegram-канала. PNG готовы к загрузке.</p>
+      </header>
+
+      <div class="brand-grid">
+        {
+          assets.map((asset) => (
+            <article class="brand-card">
+              <div class="brand-card__preview">
+                <img src={asset.preview} alt={asset.title} width="640" height="360" loading="lazy" />
+              </div>
+              <div class="brand-card__body">
+                <h2>{asset.title}</h2>
+                <p>{asset.desc}</p>
+                <div class="brand-card__downloads">
+                  {asset.files.map((f) => (
+                    <a class="btn btn--primary" href={f.href} download={f.download}>
+                      ↓ {f.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <section class="brand-note glass">
+        <h2>Как поставить в Telegram</h2>
+        <ol>
+          <li><strong>Аватар:</strong> Настройки канала → Изменить фото → загрузи <code>telegram-avatar.png</code></li>
+          <li><strong>Шапка:</strong> Настройки → Обложка канала → загрузи <code>telegram-header.png</code></li>
+          <li>Для бота — то же фото в BotFather → /setuserpic</li>
+        </ol>
+      </section>
+    </div>
+  </div>
+</Layout>

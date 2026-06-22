@@ -61,6 +61,41 @@ a:hover { text-decoration: underline; }
   padding-top: env(safe-area-inset-top);
 }
 
+.header--seal::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(201, 168, 108, 0.15) 20%,
+    rgba(201, 168, 108, 0.55) 50%,
+    rgba(201, 168, 108, 0.15) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.header--seal .logo__mark {
+  filter: drop-shadow(0 2px 12px rgba(201, 168, 108, 0.25));
+}
+
+.header--seal .logo__name {
+  background: linear-gradient(105deg, #f5e7cb 0%, #c9a86c 55%, #a67c3d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.header--seal.header--scrolled,
+.header--seal.header--menu-open {
+  background: rgba(14, 13, 12, 0.96);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+}
+
 .header__inner {
   display: flex;
   align-items: center;

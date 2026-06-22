@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" fill="none">
+  <defs>
+    <linearGradient id="sealGold" x1="8" y1="8" x2="40" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2E4C4"/>
+      <stop offset="1" stop-color="#A67C3D"/>
+    </linearGradient>
+    <radialGradient id="sealWax" cx="24" cy="24" r="18" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3A2E26"/>
+      <stop offset="0.7" stop-color="#1A1512"/>
+      <stop offset="1" stop-color="#0E0C0A"/>
+    </radialGradient>
+    <linearGradient id="nameGold" x1="100" y1="20" x2="500" y2="100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5E7CB"/>
+      <stop offset="1" stop-color="#C9A86C"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(8, 12) scale(2)">
+    <circle cx="24" cy="24" r="19" fill="url(#sealWax)" stroke="url(#sealGold)" stroke-width="1.2"/>
+    <circle cx="24" cy="24" r="15" fill="none" stroke="url(#sealGold)" stroke-width="0.6" stroke-dasharray="2 2.5" opacity="0.55"/>
+    <path d="M24 11 L25.5 14.5 L29 14.5 L26.2 16.8 L27.2 20.5 L24 18.5 L20.8 20.5 L21.8 16.8 L19 14.5 L22.5 14.5 Z" fill="url(#sealGold)" opacity="0.85"/>
+    <text x="24" y="33" text-anchor="middle" fill="url(#sealGold)" font-family="Georgia, serif" font-weight="700" font-style="italic" font-size="12">GS</text>
+  </g>
+  <text x="120" y="52" fill="url(#nameGold)" font-family="Manrope, Arial, sans-serif" font-weight="800" font-size="36" letter-spacing="0.14em">GRUPSTROY</text>
+  <text x="122" y="82" fill="#9A9088" font-family="Manrope, Arial, sans-serif" font-weight="500" font-size="13" letter-spacing="0.16em">STOLYARNAYA MANUFAKTURA</text>
+  <line x1="120" y1="92" x2="500" y2="92" stroke="url(#sealGold)" stroke-width="0.75" opacity="0.45"/>
+</svg>
