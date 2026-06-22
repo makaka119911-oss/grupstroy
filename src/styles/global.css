@@ -729,6 +729,13 @@ body.menu-open {
   color: var(--accent);
 }
 
+.form-alt {
+  margin: 14px 0 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+  text-align: center;
+}
+
 .back {
   display: inline-block;
   margin-bottom: 16px;

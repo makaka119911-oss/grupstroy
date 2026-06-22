@@ -10,7 +10,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "brand:export": "node scripts/export-brand.mjs"
+    "brand:export": "node scripts/export-brand.mjs",
+    "telegram:setup": "node scripts/setup-telegram.mjs"
   },
   "dependencies": {
     "astro": "^6.4.7"
