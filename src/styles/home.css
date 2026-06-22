@@ -444,7 +444,33 @@
 
 /* Intro panel */
 .snap-panel--intro {
-  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+
+.snap-panel__overlay--intro {
+  background: linear-gradient(
+    105deg,
+    rgba(12, 12, 12, 0.92) 0%,
+    rgba(12, 12, 12, 0.72) 45%,
+    rgba(12, 12, 12, 0.5) 100%
+  );
+}
+
+.intro-content {
+  position: relative;
+  z-index: 2;
+}
+
+.snap-panel--intro .intro-chip {
+  background: rgba(22, 22, 22, 0.78);
+  backdrop-filter: blur(14px);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.snap-panel--intro .intro-chip:hover {
+  background: rgba(30, 30, 30, 0.88);
+  border-color: rgba(201, 168, 108, 0.45);
 }
 
 .intro-chips {

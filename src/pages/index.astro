@@ -56,15 +56,18 @@ const blocks = categories.map((cat, i) => ({
 
     <!-- CATALOG INTRO -->
     <section class="snap-panel snap-panel--intro" id="panel-blocks">
-      <div class="container snap-panel__content">
-        <p class="section-num reveal">00</p>
+      <div class="snap-panel__bg">
+        <img src="/images/intro-catalog.jpg" alt="" loading="lazy" width="1920" height="1080" />
+        <div class="snap-panel__overlay snap-panel__overlay--intro"></div>
+      </div>
+      <div class="container snap-panel__content intro-content">
         <h2 class="section-title reveal">Пять направлений.<br />Двадцать пять примеров.</h2>
         <p class="section-lead reveal">
           Каждый блок — витрина возможностей, не ограничение. Листайте вниз или точки справа — по одному
           разделу на экран.
         </p>
         <p class="reveal" style="margin-bottom: 20px;">
-          <a href="/logotip" class="intro-chip" style="display: inline-flex;">Логотип: Joinery (B) →</a>
+          <a href="/logotip" class="intro-chip" style="display: inline-flex;">Выбрать логотип (6 вариантов) →</a>
         </p>
         <div class="intro-chips reveal">
           {categories.map((c, i) => (

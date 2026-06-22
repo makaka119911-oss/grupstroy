@@ -2,7 +2,10 @@
 import Layout from '../layouts/Layout.astro';
 import Logo from '../components/Logo.astro';
 import LogoMarkAtelier from '../components/logo/LogoMarkAtelier.astro';
+import LogoMarkChisel from '../components/logo/LogoMarkChisel.astro';
+import LogoMarkGrain from '../components/logo/LogoMarkGrain.astro';
 import LogoMarkJoinery from '../components/logo/LogoMarkJoinery.astro';
+import LogoMarkMitre from '../components/logo/LogoMarkMitre.astro';
 import LogoMarkMonolith from '../components/logo/LogoMarkMonolith.astro';
 import '../styles/logotip.css';
 
@@ -31,16 +34,40 @@ const options = [
     traits: ['Массив', 'Сила', 'Бренд'],
     Mark: LogoMarkMonolith,
   },
+  {
+    id: 'grain',
+    tag: 'Вариант D',
+    title: 'Grain',
+    desc: 'Годовые кольца торца — натуральное дерево, спокойная премиальность без лишних деталей.',
+    traits: ['Массив', 'Природа', 'Тепло'],
+    Mark: LogoMarkGrain,
+  },
+  {
+    id: 'mitre',
+    tag: 'Вариант E',
+    title: 'Mitre',
+    desc: 'Угол рамы под 45° — классическая столярка, интерьер и точность стыка.',
+    traits: ['Рама', 'Интерьер', 'Точность'],
+    Mark: LogoMarkMitre,
+  },
+  {
+    id: 'chisel',
+    tag: 'Вариант F',
+    title: 'Chisel',
+    desc: 'Стамеска и стружка — живое ремесло, ручная работа и мастерская.',
+    traits: ['Ремесло', 'Ручная работа', 'Характер'],
+    Mark: LogoMarkChisel,
+  },
 ] as const;
 ---
 
-<Layout title="Выбор логотипа — GRUPSTROY" description="Три варианта логотипа GRUPSTROY на одном экране">
+<Layout title="Выбор логотипа — GRUPSTROY" description="Шесть вариантов логотипа GRUPSTROY на одном экране">
   <div class="logotip-page">
     <div class="container">
       <a class="logotip-back" href="/">← На главную</a>
       <header class="logotip-hero">
         <h1>Выбери логотип</h1>
-        <p>Три концепта на одном экране. Нажми «Выбрать» — вариант сохранится, напиши мне в чат букву A, B или C.</p>
+        <p>Шесть концептов на одном экране. Нажми «Выбрать» — вариант сохранится, напиши в чат букву A–F.</p>
       </header>
 
       <div class="logotip-grid">
@@ -79,6 +106,9 @@ const options = [
     atelier: 'A — Atelier',
     joinery: 'B — Joinery',
     monolith: 'C — Monolith',
+    grain: 'D — Grain',
+    mitre: 'E — Mitre',
+    chisel: 'F — Chisel',
   };
 
   const toast = document.getElementById('logotipToast');

@@ -1,9 +1,12 @@
 ---
 import LogoMarkAtelier from './logo/LogoMarkAtelier.astro';
+import LogoMarkChisel from './logo/LogoMarkChisel.astro';
+import LogoMarkGrain from './logo/LogoMarkGrain.astro';
 import LogoMarkJoinery from './logo/LogoMarkJoinery.astro';
+import LogoMarkMitre from './logo/LogoMarkMitre.astro';
 import LogoMarkMonolith from './logo/LogoMarkMonolith.astro';
 
-export type LogoVariant = 'atelier' | 'joinery' | 'monolith';
+export type LogoVariant = 'atelier' | 'joinery' | 'monolith' | 'grain' | 'mitre' | 'chisel';
 
 interface Props {
   compact?: boolean;
@@ -16,6 +19,9 @@ const marks = {
   atelier: LogoMarkAtelier,
   joinery: LogoMarkJoinery,
   monolith: LogoMarkMonolith,
+  grain: LogoMarkGrain,
+  mitre: LogoMarkMitre,
+  chisel: LogoMarkChisel,
 } as const;
 
 const Mark = marks[variant];
