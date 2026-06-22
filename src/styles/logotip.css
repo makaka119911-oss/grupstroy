@@ -1,0 +1,171 @@
+.logotip-page {
+  min-height: 100dvh;
+  padding: 88px 0 48px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(201, 168, 108, 0.08), transparent 55%), #141414;
+}
+
+.logotip-hero {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logotip-hero h1 {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+  font-weight: 800;
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+}
+
+.logotip-hero p {
+  color: var(--muted);
+  margin: 0 auto;
+  max-width: 46ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.logotip-grid {
+  display: grid;
+  gap: 20px;
+}
+
+@media (min-width: 900px) {
+  .logotip-grid {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: stretch;
+  }
+}
+
+.logotip-card {
+  display: flex;
+  flex-direction: column;
+  background: rgba(30, 30, 30, 0.85);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
+}
+
+.logotip-card:hover {
+  border-color: rgba(201, 168, 108, 0.35);
+  transform: translateY(-2px);
+}
+
+.logotip-card.is-picked {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px rgba(201, 168, 108, 0.4), 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+.logotip-card__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid var(--line);
+}
+
+.logotip-card__bar .logo {
+  pointer-events: none;
+}
+
+.logotip-card__stage {
+  display: grid;
+  place-items: center;
+  padding: 36px 24px;
+  min-height: 200px;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(201, 168, 108, 0.12), transparent 60%),
+    #1a1a1a;
+}
+
+.logotip-card__stage .logo__mark {
+  width: 96px;
+  height: 96px;
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.5));
+}
+
+.logotip-card__body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.logotip-card__tag {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0 0 6px;
+}
+
+.logotip-card__title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+
+.logotip-card__desc {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+.logotip-card__traits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.logotip-card__traits span {
+  font-size: 0.68rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(201, 168, 108, 0.1);
+  border: 1px solid rgba(201, 168, 108, 0.2);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.logotip-pick {
+  width: 100%;
+}
+
+.logotip-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  z-index: 300;
+  padding: 14px 22px;
+  background: rgba(20, 20, 20, 0.95);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.logotip-toast.is-show {
+  transform: translateX(-50%) translateY(0);
+}
+
+.logotip-back {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  text-decoration: none;
+}
+
+.logotip-back:hover {
+  color: var(--accent);
+  text-decoration: none;
+}

@@ -1,0 +1,104 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Logo from '../components/Logo.astro';
+import LogoMarkAtelier from '../components/logo/LogoMarkAtelier.astro';
+import LogoMarkJoinery from '../components/logo/LogoMarkJoinery.astro';
+import LogoMarkMonolith from '../components/logo/LogoMarkMonolith.astro';
+import '../styles/logotip.css';
+
+const options = [
+  {
+    id: 'atelier',
+    tag: 'Вариант A',
+    title: 'Atelier',
+    desc: 'Минимализм Apple-уровня: чистая G в квадрате. Спокойно, дорого, не кричит.',
+    traits: ['Премиум', 'Универсальный', 'На века'],
+    Mark: LogoMarkAtelier,
+  },
+  {
+    id: 'joinery',
+    tag: 'Вариант B',
+    title: 'Joinery',
+    desc: 'Шестигранник и шип-паз — сразу видно столярку и точность соединений.',
+    traits: ['Ремесло', 'Характер', 'Запоминается'],
+    Mark: LogoMarkJoinery,
+  },
+  {
+    id: 'monolith',
+    tag: 'Вариант C',
+    title: 'Monolith',
+    desc: 'Торец массива + монограмма GS. Брутальнее, индустриальнее, «мы — производство».',
+    traits: ['Массив', 'Сила', 'Бренд'],
+    Mark: LogoMarkMonolith,
+  },
+] as const;
+---
+
+<Layout title="Выбор логотипа — GRUPSTROY" description="Три варианта логотипа GRUPSTROY на одном экране">
+  <div class="logotip-page">
+    <div class="container">
+      <a class="logotip-back" href="/">← На главную</a>
+      <header class="logotip-hero">
+        <h1>Выбери логотип</h1>
+        <p>Три концепта на одном экране. Нажми «Выбрать» — вариант сохранится, напиши мне в чат букву A, B или C.</p>
+      </header>
+
+      <div class="logotip-grid">
+        {
+          options.map((opt) => (
+            <article class="logotip-card" data-variant={opt.id}>
+              <div class="logotip-card__bar">
+                <Logo variant={opt.id} compact />
+              </div>
+              <div class="logotip-card__stage">
+                <opt.Mark />
+              </div>
+              <div class="logotip-card__body">
+                <p class="logotip-card__tag">{opt.tag}</p>
+                <h2 class="logotip-card__title">{opt.title}</h2>
+                <p class="logotip-card__desc">{opt.desc}</p>
+                <div class="logotip-card__traits">
+                  {opt.traits.map((t) => <span>{t}</span>)}
+                </div>
+                <button type="button" class="btn btn--primary logotip-pick" data-pick={opt.id}>
+                  Выбрать {opt.tag.split(' ')[1]}
+                </button>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+  <div class="logotip-toast" id="logotipToast" role="status"></div>
+</Layout>
+
+<script>
+  const STORAGE_KEY = 'grupstroy-logo-variant';
+  const labels: Record<string, string> = {
+    atelier: 'A — Atelier',
+    joinery: 'B — Joinery',
+    monolith: 'C — Monolith',
+  };
+
+  const toast = document.getElementById('logotipToast');
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    document.querySelector(`[data-variant="${saved}"]`)?.classList.add('is-picked');
+  }
+
+  document.querySelectorAll('[data-pick]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-pick');
+      if (!id) return;
+      localStorage.setItem(STORAGE_KEY, id);
+      document.querySelectorAll('.logotip-card').forEach((c) => c.classList.remove('is-picked'));
+      document.querySelector(`[data-variant="${id}"]`)?.classList.add('is-picked');
+      if (toast) {
+        toast.textContent = `Выбран ${labels[id] ?? id}. Напиши в чат — поставлю на весь сайт.`;
+        toast.classList.add('is-show');
+        setTimeout(() => toast.classList.remove('is-show'), 4000);
+      }
+    });
+  });
+</script>

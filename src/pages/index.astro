@@ -43,13 +43,13 @@ const blocks = categories.map((cat, i) => ({
         </h1>
         <p class="hero-lead">{slogan}</p>
         <div class="hero-actions">
-          <a class="btn btn--primary btn--lg" href="#panel-kuhnya">Смотреть каталог</a>
+          <a class="btn btn--primary btn--lg" href="#panel-kuhnya" data-nav-link>Смотреть каталог</a>
           <a class="btn btn--glass btn--lg" href="/zayavka">Расчёт за 1 день</a>
         </div>
         <p class="hero-individual"><strong>ИНДИВИДУАЛЬНО</strong> — любой чертёж, любая порода</p>
         <p class="hero-hint-desktop">Наведите курсор — загляните в мастерскую</p>
       </div>
-      <a class="scroll-hint" href="#panel-blocks" aria-label="Дальше">
+      <a class="scroll-hint" href="#panel-blocks" data-nav-link aria-label="Дальше">
         <span></span>
       </a>
     </section>
@@ -57,15 +57,18 @@ const blocks = categories.map((cat, i) => ({
     <!-- CATALOG INTRO -->
     <section class="snap-panel snap-panel--intro" id="panel-blocks">
       <div class="container snap-panel__content">
-        <p class="section-num">00</p>
-        <h2 class="section-title">Пять направлений.<br />Двадцать пять примеров.</h2>
-        <p class="section-lead">
+        <p class="section-num reveal">00</p>
+        <h2 class="section-title reveal">Пять направлений.<br />Двадцать пять примеров.</h2>
+        <p class="section-lead reveal">
           Каждый блок — витрина возможностей, не ограничение. Листайте вниз или точки справа — по одному
           разделу на экран.
         </p>
-        <div class="intro-chips">
+        <p class="reveal" style="margin-bottom: 20px;">
+          <a href="/logotip" class="intro-chip" style="display: inline-flex;">Выбрать логотип A / B / C →</a>
+        </p>
+        <div class="intro-chips reveal">
           {categories.map((c, i) => (
-            <a class="intro-chip" href={`#panel-${c.slug}`}>
+            <a class="intro-chip" href={`#panel-${c.slug}`} data-nav-link>
               <span class="intro-chip__n">{String(i + 1).padStart(2, '0')}</span>
               <span>{c.title.split(' ').slice(0, 2).join(' ')}…</span>
             </a>
@@ -77,38 +80,49 @@ const blocks = categories.map((cat, i) => ({
     <!-- 5 BLOCKS -->
     {
       blocks.map((block) => (
-        <section
-          class={`snap-panel snap-panel--block snap-panel--${block.slug}`}
-          id={`panel-${block.slug}`}
-          style={`--panel-bg: url(${block.heroImage})`}
-        >
-          <div class="snap-panel__bg snap-panel__bg--dim">
-            <img src={block.heroImage} alt="" loading="lazy" />
-            <div class="snap-panel__overlay snap-panel__overlay--block"></div>
+        <>
+          <div class="panel-divider" aria-hidden="true">
+            <span class="panel-divider__line"></span>
+            <span class="panel-divider__num">{block.num}</span>
+            <span class="panel-divider__line"></span>
           </div>
-          <div class="container block-layout">
-            <div class="block-copy glass">
-              <p class="section-num">{block.num}</p>
-              <p class="block-accent">{block.accent}</p>
-              <h2 class="section-title section-title--sm">{block.title}</h2>
-              <p class="section-lead">{block.intro}</p>
-              <p class="block-individual">
-                <strong>ИНДИВИДУАЛЬНО</strong> — примеры, не предел. Любая геометрия.
-              </p>
-              <a class="btn btn--primary" href={`/${block.slug}`}>
-                Все 5 позиций →
-              </a>
+          <section
+            class={`snap-panel snap-panel--block snap-panel--${block.slug}`}
+            id={`panel-${block.slug}`}
+            data-block={block.slug}
+          >
+            <div class="snap-panel__bg snap-panel__bg--dim parallax-wrap">
+              <img class="parallax-img" src={block.heroImage} alt="" loading="lazy" />
+              <div class="snap-panel__overlay snap-panel__overlay--block"></div>
             </div>
-            <div class="block-preview">
-              {block.products.map((p) => (
-                <a class="preview-card" href={`/catalog/${p.slug}`}>
-                  <img src={p.image} alt={p.title} loading="lazy" width="400" height="260" />
-                  <span class="preview-card__title">{p.title}</span>
+            <div class="container block-layout">
+              <div class="block-copy glass reveal">
+                <p class="section-num">{block.num}</p>
+                <p class="block-accent">{block.accent}</p>
+                <h2 class="section-title section-title--sm">{block.title}</h2>
+                <p class="section-lead">{block.intro}</p>
+                <p class="block-individual">
+                  <strong>ИНДИВИДУАЛЬНО</strong> — примеры, не предел. Любая геометрия.
+                </p>
+                <a class="btn btn--primary" href={`/${block.slug}`}>
+                  Все 5 позиций →
                 </a>
-              ))}
+              </div>
+              <div class="block-preview">
+                {block.products.map((p, pi) => (
+                  <a
+                    class="preview-card reveal"
+                    style={`--reveal-delay: ${pi + 1}`}
+                    href={`/catalog/${p.slug}`}
+                  >
+                    <img src={p.image} alt={p.title} loading="lazy" width="400" height="260" />
+                    <span class="preview-card__title">{p.title}</span>
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </>
       ))
     }
 
@@ -148,6 +162,7 @@ const blocks = categories.map((cat, i) => ({
 </Layout>
 
 <script>
+  const homeScroll = document.getElementById('homeScroll');
   const heroReveal = document.getElementById('heroReveal');
   const heroCraft = document.getElementById('heroCraft');
   const heroRing = document.getElementById('heroRing');
@@ -170,4 +185,57 @@ const blocks = categories.map((cat, i) => ({
       heroRing.style.opacity = '0';
     });
   }
+
+  const revealRoot = homeScroll ?? undefined;
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { root: revealRoot, threshold: 0.15, rootMargin: '0px 0px -8% 0px' }
+  );
+  document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+
+  const blockPanels = document.querySelectorAll('.snap-panel--block');
+  const updateParallax = () => {
+    const root = homeScroll ?? document.documentElement;
+    const viewH = homeScroll ? homeScroll.clientHeight : window.innerHeight;
+
+    blockPanels.forEach((panel) => {
+      const img = panel.querySelector('.parallax-img') as HTMLImageElement | null;
+      if (!img) return;
+      const rect = panel.getBoundingClientRect();
+      const rootRect = homeScroll?.getBoundingClientRect();
+      const offset = rootRect ? rect.top - rootRect.top : rect.top;
+      const progress = Math.max(0, Math.min(1, 1 - offset / viewH));
+      const y = (progress - 0.5) * 48;
+      const scale = 1.08 + progress * 0.06;
+      img.style.transform = `scale(${scale}) translate3d(0, ${y}px, 0)`;
+    });
+  };
+
+  if (homeScroll) {
+    homeScroll.addEventListener('scroll', updateParallax, { passive: true });
+  } else {
+    window.addEventListener('scroll', updateParallax, { passive: true });
+  }
+  updateParallax();
+
+  const blockObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('is-active', entry.isIntersecting && entry.intersectionRatio > 0.35);
+      });
+    },
+    { root: revealRoot, threshold: [0.35, 0.55] }
+  );
+  blockPanels.forEach((p) => blockObserver.observe(p));
+
+  document.querySelectorAll('[href^="#panel-"]').forEach((link) => {
+    if (!link.hasAttribute('data-nav-link')) link.setAttribute('data-nav-link', '');
+  });
 </script>

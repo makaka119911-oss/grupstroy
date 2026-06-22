@@ -1,15 +1,28 @@
 ---
-import LogoMark from './LogoMark.astro';
+import LogoMarkAtelier from './logo/LogoMarkAtelier.astro';
+import LogoMarkJoinery from './logo/LogoMarkJoinery.astro';
+import LogoMarkMonolith from './logo/LogoMarkMonolith.astro';
+
+export type LogoVariant = 'atelier' | 'joinery' | 'monolith';
 
 interface Props {
   compact?: boolean;
+  variant?: LogoVariant;
 }
 
-const { compact = false } = Astro.props;
+const { compact = false, variant = 'atelier' } = Astro.props;
+
+const marks = {
+  atelier: LogoMarkAtelier,
+  joinery: LogoMarkJoinery,
+  monolith: LogoMarkMonolith,
+} as const;
+
+const Mark = marks[variant];
 ---
 
 <a class:list={['logo', compact && 'logo--compact']} href="/">
-  <LogoMark />
+  <Mark />
   <span class="logo__text">
     <span class="logo__name">GRUPSTROY</span>
     {!compact && <span class="logo__sub">столярная мануфактура</span>}
