@@ -1,16 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none">
   <defs>
-    <linearGradient id="gGold" x1="8" y1="6" x2="40" y2="42" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E8D4A8"/>
-      <stop offset="0.5" stop-color="#C9A86C"/>
-      <stop offset="1" stop-color="#8B6914"/>
+    <linearGradient id="gGold" x1="6" y1="4" x2="50" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2E4C6"/>
+      <stop offset="0.45" stop-color="#D4AF6A"/>
+      <stop offset="1" stop-color="#9A7B3C"/>
     </linearGradient>
-    <linearGradient id="gWood" x1="4" y1="44" x2="44" y2="4" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#5C4A3A"/>
-      <stop offset="1" stop-color="#3D3028"/>
+    <linearGradient id="gWood" x1="8" y1="48" x2="48" y2="8" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4A3C32"/>
+      <stop offset="1" stop-color="#1E1814"/>
     </linearGradient>
   </defs>
-  <rect x="4" y="4" width="40" height="40" rx="11" stroke="url(#gGold)" stroke-width="1.5" fill="url(#gWood)" opacity="0.95"/>
-  <path d="M16 14h12a6 6 0 0 1 6 6v4a6 6 0 0 1-6 6H20v-8h8a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-8V14z" fill="url(#gGold)"/>
-  <path d="M14 32 L24 22 M34 14 L24 24" stroke="#E8D4A8" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+  <rect x="4" y="4" width="48" height="48" rx="14" fill="url(#gWood)"/>
+  <rect x="4" y="4" width="48" height="48" rx="14" stroke="url(#gGold)" stroke-width="1.25"/>
+  <path d="M17 17h14c4.5 0 8 3.5 8 8s-3.5 8-8 8H25v-6h6c1.1 0 2-.9 2-2s-.9-2-2-2h-6v-6h8c2.2 0 4 1.8 4 4v2c0 3.3-2.7 6-6 6H17V17z" fill="url(#gGold)"/>
+  <path d="M32 17 L40 25 L36 29 L28 21 Z" fill="#F2E4C6" opacity="0.85"/>
 </svg>

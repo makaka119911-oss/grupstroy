@@ -13,13 +13,30 @@ const blocks = categories.map((cat, i) => ({
 
 <Layout title="GRUPSTROY — столярная мануфактура" home>
   <div class="home-scroll" id="homeScroll">
-    <!-- HERO -->
+    <!-- HERO — эффект «маска» как в motion-сайтах: курсор открывает мастерскую -->
     <section class="snap-panel snap-panel--hero" id="panel-hero">
-      <div class="snap-panel__bg">
-        <img src="/images/hero.jpg" alt="" width="1920" height="1080" fetchpriority="high" />
-        <div class="snap-panel__overlay"></div>
+      <div class="hero-reveal" id="heroReveal">
+        <div class="hero-reveal__layer hero-reveal__layer--finish">
+          <img
+            src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=1920&q=85"
+            alt=""
+            width="1920"
+            height="1080"
+            fetchpriority="high"
+          />
+        </div>
+        <div class="hero-reveal__layer hero-reveal__layer--craft" id="heroCraft">
+          <img
+            src="https://images.unsplash.com/photo-1504328345606-720bf6da6793?w=1920&q=85"
+            alt=""
+            width="1920"
+            height="1080"
+          />
+        </div>
+        <div class="hero-reveal__ring" id="heroRing" aria-hidden="true"></div>
+        <div class="snap-panel__overlay snap-panel__overlay--hero"></div>
       </div>
-      <div class="snap-panel__content container">
+      <div class="snap-panel__content container hero-content">
         <p class="hero-tag">Сделано руками · спроектировано точно</p>
         <h1 class="hero-title">
           Столярные<br /><span class="hero-title__accent">изделия любой</span><br />сложности
@@ -30,6 +47,7 @@ const blocks = categories.map((cat, i) => ({
           <a class="btn btn--glass btn--lg" href="/zayavka">Расчёт за 1 день</a>
         </div>
         <p class="hero-individual"><strong>ИНДИВИДУАЛЬНО</strong> — любой чертёж, любая порода</p>
+        <p class="hero-hint-desktop">Наведите курсор — загляните в мастерскую</p>
       </div>
       <a class="scroll-hint" href="#panel-blocks" aria-label="Дальше">
         <span></span>
@@ -128,3 +146,28 @@ const blocks = categories.map((cat, i) => ({
     </section>
   </div>
 </Layout>
+
+<script>
+  const heroReveal = document.getElementById('heroReveal');
+  const heroCraft = document.getElementById('heroCraft');
+  const heroRing = document.getElementById('heroRing');
+
+  if (heroReveal && heroCraft && heroRing && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    const radius = 160;
+
+    const move = (x: number, y: number) => {
+      const rect = heroReveal.getBoundingClientRect();
+      const px = x - rect.left;
+      const py = y - rect.top;
+      heroCraft.style.clipPath = `circle(${radius}px at ${px}px ${py}px)`;
+      heroRing.style.transform = `translate(${px - radius}px, ${py - radius}px)`;
+      heroRing.style.opacity = '1';
+    };
+
+    heroReveal.addEventListener('mousemove', (e) => move(e.clientX, e.clientY));
+    heroReveal.addEventListener('mouseleave', () => {
+      heroCraft.style.clipPath = 'circle(0px at 50% 50%)';
+      heroRing.style.opacity = '0';
+    });
+  }
+</script>

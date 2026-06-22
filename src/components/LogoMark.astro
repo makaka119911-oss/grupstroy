@@ -1,43 +1,51 @@
 ---
-/** Inline SVG — не зависит от /logo.svg на CDN */
+/** Монограмма: шип-паз + торец доски — столярная точность */
 ---
 <svg
   class="logo__mark"
   xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 48 48"
-  width="40"
-  height="40"
+  viewBox="0 0 56 56"
+  width="44"
+  height="44"
   fill="none"
   aria-hidden="true"
 >
   <defs>
-    <linearGradient id="gsGold" x1="8" y1="6" x2="40" y2="42" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#E8D4A8"></stop>
-      <stop offset="0.5" stop-color="#C9A86C"></stop>
-      <stop offset="1" stop-color="#8B6914"></stop>
+    <linearGradient id="lgGold" x1="6" y1="4" x2="50" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F2E4C6"></stop>
+      <stop offset="0.45" stop-color="#D4AF6A"></stop>
+      <stop offset="1" stop-color="#9A7B3C"></stop>
     </linearGradient>
-    <linearGradient id="gsWood" x1="4" y1="44" x2="44" y2="4" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#5C4A3A"></stop>
-      <stop offset="1" stop-color="#3D3028"></stop>
+    <linearGradient id="lgWood" x1="8" y1="48" x2="48" y2="8" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4A3C32"></stop>
+      <stop offset="1" stop-color="#1E1814"></stop>
     </linearGradient>
+    <linearGradient id="lgGrain" x1="0" y1="28" x2="56" y2="28" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity="0.06"></stop>
+      <stop offset="0.5" stop-color="#fff" stop-opacity="0"></stop>
+      <stop offset="1" stop-color="#fff" stop-opacity="0.05"></stop>
+    </linearGradient>
+    <clipPath id="lgClip">
+      <rect x="4" y="4" width="48" height="48" rx="14"></rect>
+    </clipPath>
   </defs>
-  <rect
-    x="4"
-    y="4"
-    width="40"
-    height="40"
-    rx="11"
-    stroke="url(#gsGold)"
-    stroke-width="1.5"
-    fill="url(#gsWood)"
-    opacity="0.95"></rect>
+  <rect x="4" y="4" width="48" height="48" rx="14" fill="url(#lgWood)"></rect>
+  <g clip-path="url(#lgClip)" opacity="0.9">
+    <path d="M4 18h48M4 28h48M4 38h48" stroke="url(#lgGrain)" stroke-width="1"></path>
+    <path d="M14 4v48M28 4v48M42 4v48" stroke="url(#lgGrain)" stroke-width="0.75"></path>
+  </g>
+  <rect x="4" y="4" width="48" height="48" rx="14" stroke="url(#lgGold)" stroke-width="1.25"></rect>
+  <!-- Dovetail G -->
   <path
-    d="M16 14h12a6 6 0 0 1 6 6v4a6 6 0 0 1-6 6H20v-8h8a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-8V14z"
-    fill="url(#gsGold)"></path>
+    d="M17 17h14c4.5 0 8 3.5 8 8s-3.5 8-8 8H25v-6h6c1.1 0 2-.9 2-2s-.9-2-2-2h-6v-6h8c2.2 0 4 1.8 4 4v2c0 3.3-2.7 6-6 6H17V17z"
+    fill="url(#lgGold)"></path>
   <path
-    d="M14 32 L24 22 M34 14 L24 24"
-    stroke="#E8D4A8"
-    stroke-width="1.2"
-    stroke-linecap="round"
-    opacity="0.35"></path>
+    d="M32 17 L40 25 L36 29 L28 21 Z"
+    fill="#F2E4C6"
+    opacity="0.85"></path>
+  <path
+    d="M15 39 L23 31 L27 35 L19 43 Z"
+    fill="#C9A86C"
+    opacity="0.55"></path>
+  <circle cx="40" cy="16" r="1.5" fill="#F2E4C6" opacity="0.7"></circle>
 </svg>

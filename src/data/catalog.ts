@@ -75,8 +75,8 @@ export const products: Product[] = [
     finish: 'Масло + воск, влагостойкий состав',
     term: 'от 4 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?w=1200&q=80',
-    imageAlt: 'Кухонный остров из дерева',
+    image: 'https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=1200&q=80',
+    imageAlt: 'Кухонный остров из массива',
   },
   {
     slug: 'falsh-panel-kholodilnik',
@@ -87,8 +87,8 @@ export const products: Product[] = [
     finish: 'Эмаль или масло под фасады',
     term: 'от 10 дней',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=1200&q=80',
-    imageAlt: 'Встроенный холодильник в кухне',
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80',
+    imageAlt: 'Встроенная кухня с техникой',
   },
   {
     slug: 'stol-transformer',
@@ -111,8 +111,8 @@ export const products: Product[] = [
     finish: 'Масло + патина по желанию',
     term: 'от 3 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1574643156929-51fa098b0394?w=1200&q=80',
-    imageAlt: 'Барная стойка из дерева',
+    image: 'https://images.unsplash.com/photo-1578898887939-d9e8a177e307?w=1200&q=80',
+    imageAlt: 'Барная стойка в интерьере',
   },
   {
     slug: 'navesnye-shkafy-yasen',
@@ -123,8 +123,8 @@ export const products: Product[] = [
     finish: 'Масло, push-to-open',
     term: 'от 4 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
-    imageAlt: 'Кухонные навесные шкафы',
+    image: 'https://images.unsplash.com/photo-1556909212-6e7cfaeeb21a?w=1200&q=80',
+    imageAlt: 'Навесные кухонные шкафы',
   },
   // БЛОК 2
   {
@@ -136,8 +136,8 @@ export const products: Product[] = [
     finish: 'Масло / лак матовый',
     term: 'от 2 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1594620302200-9a762244a156?w=1200&q=80',
-    imageAlt: 'Деревянный стеллаж-лесенка',
+    image: 'https://images.unsplash.com/photo-1594026112284-02bb6d3352eb?w=1200&q=80',
+    imageAlt: 'Стеллаж-лесенка из дерева',
   },
   {
     slug: 'shkaf-kupe-radius',
@@ -148,8 +148,8 @@ export const products: Product[] = [
     finish: 'Эмаль / шпон дуба',
     term: 'от 5 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1555041469-a586c61e9bc7?w=1200&q=80',
-    imageAlt: 'Шкаф-купе',
+    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=80',
+    imageAlt: 'Шкаф-купе в спальне',
   },
   {
     slug: 'penal-prihozhaya',
@@ -160,8 +160,8 @@ export const products: Product[] = [
     finish: 'Масло на фасадах',
     term: 'от 3 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80',
-    imageAlt: 'Система хранения в прихожей',
+    image: 'https://images.unsplash.com/photo-1502672265066-813c3525c0f1?w=1200&q=80',
+    imageAlt: 'Прихожая с системой хранения',
   },
   {
     slug: 'komod-yashchiki',
@@ -172,8 +172,8 @@ export const products: Product[] = [
     finish: 'Масло + воск',
     term: 'от 3 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1594620302200-97d1b4a2d1c0?w=1200&q=80',
-    imageAlt: 'Деревянный комод',
+    image: 'https://images.unsplash.com/photo-1598300042249-d088f8e3f2d4?w=1200&q=80',
+    imageAlt: 'Деревянный комод с ящиками',
   },
   {
     slug: 'vitrina-kollektsii',
@@ -184,7 +184,7 @@ export const products: Product[] = [
     finish: 'Масло, LED-подсветка',
     term: 'от 4 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1615529328331-f8917597711f?w=1200&q=80',
+    image: 'https://images.unsplash.com/photo-1611269146501-5fb976a6ff4a?w=1200&q=80',
     imageAlt: 'Витрина с подсветкой',
   },
   // БЛОК 3
@@ -209,8 +209,8 @@ export const products: Product[] = [
     finish: 'Масло / лазурь',
     term: 'от 2 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=1200&q=80',
-    imageAlt: 'Деревянные 3D панели',
+    image: 'https://images.unsplash.com/photo-1600607687929-752b70d0c352?w=1200&q=80',
+    imageAlt: 'Деревянные рейки на стене',
   },
   {
     slug: 'portal-kamin',
@@ -233,8 +233,8 @@ export const products: Product[] = [
     finish: 'Масло Hardwax',
     term: 'от 6 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80',
-    imageAlt: 'Деревянная лестница',
+    image: 'https://images.unsplash.com/photo-1513694203231-719280a94d9e?w=1200&q=80',
+    imageAlt: 'Деревянная лестница в доме',
   },
   {
     slug: 'karniz-pilyastry',
@@ -258,8 +258,8 @@ export const products: Product[] = [
     finish: 'Воск + масло',
     term: 'от 10 дней',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1602874801006-4a6c6a7a7b8e?w=1200&q=80',
-    imageAlt: 'Деревянная шкатулка',
+    image: 'https://images.unsplash.com/photo-1605000796989-95ee41f4bea7?w=1200&q=80',
+    imageAlt: 'Деревянная шкатулка ручной работы',
   },
   {
     slug: 'doski-end-grain',
@@ -331,8 +331,8 @@ export const products: Product[] = [
     finish: 'Масло с УФ-фильтром',
     term: 'от 2 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80',
-    imageAlt: 'Садовый стол',
+    image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80',
+    imageAlt: 'Садовый деревянный стол',
   },
   {
     slug: 'kacheli-divan',
@@ -367,8 +367,8 @@ export const products: Product[] = [
     finish: 'Масло для террасы',
     term: 'от 2 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80',
-    imageAlt: 'Деревянная терраса',
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
+    imageAlt: 'Деревянная терраса у дома',
   },
 ];
 
