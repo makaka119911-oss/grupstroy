@@ -67,6 +67,8 @@ a:hover { text-decoration: underline; }
   gap: 12px;
   min-height: 64px;
   padding-block: 10px;
+  position: relative;
+  z-index: 210;
 }
 
 .header__actions {
@@ -150,7 +152,15 @@ a:hover { text-decoration: underline; }
 
 .nav a:hover { color: var(--text); text-decoration: none; }
 
-.header__cta { display: none; }
+.header__cta {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header__actions .header__cta {
+    display: inline-flex;
+  }
+}
 
 .burger {
   display: flex;
@@ -249,7 +259,6 @@ body.menu-open {
 
 @media (min-width: 768px) {
   .nav { display: flex; }
-  .header__cta { display: inline-flex; }
   .burger { display: none; }
   .mobile-nav,
   .mobile-nav__backdrop { display: none !important; }
