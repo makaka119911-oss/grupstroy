@@ -1,0 +1,15 @@
+---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<a class:list={['logo', compact && 'logo--compact']} href="/">
+  <img class="logo__svg" src="/logo.svg" width="40" height="40" alt="" />
+  <span class="logo__text">
+    <span class="logo__name">GRUPSTROY</span>
+    {!compact && <span class="logo__sub">столярная мануфактура</span>}
+  </span>
+</a>

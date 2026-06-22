@@ -77,31 +77,28 @@ a:hover { text-decoration: underline; }
   flex-shrink: 0;
 }
 
-.logo__mark {
-  width: 40px;
-  height: 40px;
-  display: grid;
-  place-items: center;
-  background: linear-gradient(135deg, var(--wood-light), var(--wood));
-  border-radius: 10px;
-  font-weight: 800;
-  font-size: 1.1rem;
-  color: #fff;
+/* Logo — SVG mark + wordmark */
+.logo__svg {
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.25));
 }
 
 .logo__name {
   display: block;
   font-weight: 800;
-  font-size: 1rem;
-  letter-spacing: 0.06em;
+  font-size: 0.92rem;
+  letter-spacing: 0.12em;
 }
 
 .logo__sub {
   display: block;
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   color: var(--muted);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  font-weight: 500;
 }
+
+.logo--compact .logo__sub { display: none; }
 
 .nav {
   display: none;

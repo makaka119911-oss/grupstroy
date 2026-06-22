@@ -1,42 +1,130 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ProductCard from '../components/ProductCard.astro';
-import { categories, slogan } from '../data/catalog';
+import '../styles/home.css';
+import { categories, slogan, services, getProductsByCategory } from '../data/catalog';
+
+const blocks = categories.map((cat, i) => ({
+  ...cat,
+  num: String(i + 1).padStart(2, '0'),
+  products: getProductsByCategory(cat.id).slice(0, 3),
+  heroImage: getProductsByCategory(cat.id)[0]?.image ?? '/images/hero.jpg',
+}));
 ---
 
-<Layout title="GRUPSTROY — каталог столярных изделий на заказ">
-  <section class="hero container">
-    <p class="hero__eyebrow">Сделано руками, но по уму</p>
-    <h1>Столярные изделия любой сложности</h1>
-    <p class="hero__lead">{slogan}</p>
-    <div class="hero__actions">
-      <a class="btn btn--primary btn--lg" href="#catalog">Смотреть каталог</a>
-      <a class="btn btn--ghost btn--lg" href="/zayavka">Рассчитать за 1 день</a>
-    </div>
-    <span class="hero__chip">ИНДИВИДУАЛЬНО · любой чертёж</span>
-  </section>
+<Layout title="GRUPSTROY — столярная мануфактура" home>
+  <div class="home-scroll" id="homeScroll">
+    <!-- HERO -->
+    <section class="snap-panel snap-panel--hero" id="panel-hero">
+      <div class="snap-panel__bg">
+        <img src="/images/hero.jpg" alt="" width="1920" height="1080" fetchpriority="high" />
+        <div class="snap-panel__overlay"></div>
+      </div>
+      <div class="snap-panel__content container">
+        <p class="hero-tag">Сделано руками · спроектировано точно</p>
+        <h1 class="hero-title">
+          Столярные<br /><span class="hero-title__accent">изделия любой</span><br />сложности
+        </h1>
+        <p class="hero-lead">{slogan}</p>
+        <div class="hero-actions">
+          <a class="btn btn--primary btn--lg" href="#panel-kuhnya">Смотреть каталог</a>
+          <a class="btn btn--glass btn--lg" href="/zayavka">Расчёт за 1 день</a>
+        </div>
+        <p class="hero-individual"><strong>ИНДИВИДУАЛЬНО</strong> — любой чертёж, любая порода</p>
+      </div>
+      <a class="scroll-hint" href="#panel-blocks" aria-label="Дальше">
+        <span></span>
+      </a>
+    </section>
 
-  <section class="section container" id="catalog">
-    <div class="section__head">
-      <h2>5 направлений · 25 примеров</h2>
-      <p>Каждый блок — не каталог ограничений, а витрина возможностей. Меняем размеры, породу и отделку под вас.</p>
-    </div>
-    <div class="tiles">
-      {categories.map((cat, i) => (
-        <a class="tile" href={`/${cat.slug}`}>
-          <span class="tile__num">Блок {i + 1}</span>
-          <p class="tile__title">{cat.title}</p>
-          <p class="tile__sub">{cat.accent}</p>
-        </a>
-      ))}
-    </div>
-  </section>
+    <!-- CATALOG INTRO -->
+    <section class="snap-panel snap-panel--intro" id="panel-blocks">
+      <div class="container snap-panel__content">
+        <p class="section-num">00</p>
+        <h2 class="section-title">Пять направлений.<br />Двадцать пять примеров.</h2>
+        <p class="section-lead">
+          Каждый блок — витрина возможностей, не ограничение. Листайте вниз или точки справа — по одному
+          разделу на экран.
+        </p>
+        <div class="intro-chips">
+          {categories.map((c, i) => (
+            <a class="intro-chip" href={`#panel-${c.slug}`}>
+              <span class="intro-chip__n">{String(i + 1).padStart(2, '0')}</span>
+              <span>{c.title.split(' ').slice(0, 2).join(' ')}…</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
 
-  <section class="section container">
-    <div class="section__head">
-      <h2>Дизайн и чертёж</h2>
-      <p>Нет готового проекта — разработаем КД и 3D под ключ.</p>
-    </div>
-    <a class="btn btn--primary" href="/uslugi">Услуги проектирования</a>
-  </section>
+    <!-- 5 BLOCKS -->
+    {
+      blocks.map((block) => (
+        <section
+          class="snap-panel snap-panel--block"
+          id={`panel-${block.slug}`}
+          style={`--panel-bg: url(${block.heroImage})`}
+        >
+          <div class="snap-panel__bg snap-panel__bg--dim">
+            <img src={block.heroImage} alt="" loading="lazy" />
+            <div class="snap-panel__overlay snap-panel__overlay--block"></div>
+          </div>
+          <div class="container block-layout">
+            <div class="block-copy glass">
+              <p class="section-num">{block.num}</p>
+              <p class="block-accent">{block.accent}</p>
+              <h2 class="section-title section-title--sm">{block.title}</h2>
+              <p class="section-lead">{block.intro}</p>
+              <p class="block-individual">
+                <strong>ИНДИВИДУАЛЬНО</strong> — примеры, не предел. Любая геометрия.
+              </p>
+              <a class="btn btn--primary" href={`/${block.slug}`}>
+                Все 5 позиций →
+              </a>
+            </div>
+            <div class="block-preview">
+              {block.products.map((p) => (
+                <a class="preview-card" href={`/catalog/${p.slug}`}>
+                  <img src={p.image} alt={p.title} loading="lazy" width="400" height="260" />
+                  <span class="preview-card__title">{p.title}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      ))
+    }
+
+    <!-- SERVICES -->
+    <section class="snap-panel snap-panel--services" id="panel-services">
+      <div class="container snap-panel__content">
+        <p class="section-num">06</p>
+        <h2 class="section-title section-title--sm">Дизайн и чертёж</h2>
+        <p class="section-lead">Нет готового проекта — разработаем КД и 3D под ключ.</p>
+        <div class="service-grid">
+          {services.map((s) => (
+            <article class="glass service-card">
+              <span class="service-card__n">0{s.id}</span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </article>
+          ))}
+        </div>
+        <a class="btn btn--ghost" href="/uslugi">Подробнее об услугах</a>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="snap-panel snap-panel--cta" id="panel-cta">
+      <div class="container snap-panel__content cta-box glass">
+        <h2 class="section-title section-title--sm">Укажите габариты —<br />согласуем за 1 день</h2>
+        <p class="section-lead">
+          Д×Ш×В, фото помещения, эскиз. Нарисуем чертёж, впишем в план, доставка по всей РФ.
+        </p>
+        <a class="btn btn--primary btn--lg btn--wide" href="/zayavka">Оставить заявку</a>
+        <footer class="home-footer">
+          <p>© {new Date().getFullYear()} GRUPSTROY · фото иллюстративные до согласования с мастером</p>
+        </footer>
+      </div>
+    </section>
+  </div>
 </Layout>

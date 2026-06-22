@@ -1,20 +1,36 @@
 ---
+import Logo from './Logo.astro';
+
+interface Props {
+  home?: boolean;
+}
+
+const { home = false } = Astro.props;
+
 const nav = [
-  { href: '/#catalog', label: 'Каталог' },
+  { href: home ? '#panel-hero' : '/', label: 'Главная' },
+  { href: home ? '#panel-blocks' : '/#catalog', label: 'Каталог' },
   { href: '/uslugi', label: 'Услуги' },
   { href: '/zayavka', label: 'Заявка' },
 ];
+
+const dots = home
+  ? [
+      { id: 'panel-hero', label: 'Главная' },
+      { id: 'panel-blocks', label: 'Каталог' },
+      ...['kuhnya', 'korpus', 'dekor', 'malaya-forma', 'sad'].map((s, i) => ({
+        id: `panel-${s}`,
+        label: `Блок ${i + 1}`,
+      })),
+      { id: 'panel-services', label: 'Услуги' },
+      { id: 'panel-cta', label: 'Заявка' },
+    ]
+  : [];
 ---
 
-<header class="header" id="header">
+<header class:list={['header', home && 'header--home']} id="header">
   <div class="container header__inner">
-    <a class="logo" href="/">
-      <span class="logo__mark">G</span>
-      <span class="logo__text">
-        <span class="logo__name">GRUPSTROY</span>
-        <span class="logo__sub">столярное производство</span>
-      </span>
-    </a>
+    <Logo />
     <nav class="nav" aria-label="Меню">
       {nav.map((item) => (
         <a href={item.href}>{item.label}</a>
@@ -32,6 +48,24 @@ const nav = [
     <a class="btn btn--primary" href="/zayavka">Рассчитать проект</a>
   </nav>
 </header>
+
+{
+  home && (
+    <nav class="snap-dots" aria-label="Разделы" id="snapDots">
+      {dots.map((d, i) => (
+        <button
+          type="button"
+          class="snap-dots__btn"
+          data-target={d.id}
+          aria-label={d.label}
+          aria-current={i === 0 ? 'true' : undefined}
+        >
+          <span class="snap-dots__tip">{d.label}</span>
+        </button>
+      ))}
+    </nav>
+  )
+}
 
 <script>
   const burger = document.getElementById('burger');
@@ -52,4 +86,44 @@ const nav = [
       burger?.setAttribute('aria-expanded', 'false');
     });
   });
+
+  const header = document.getElementById('header');
+  const scroller = document.getElementById('homeScroll');
+  if (scroller && header?.classList.contains('header--home')) {
+    scroller.addEventListener(
+      'scroll',
+      () => {
+        header.classList.toggle('header--scrolled', scroller.scrollTop > 48);
+      },
+      { passive: true }
+    );
+  }
+
+  const dots = document.getElementById('snapDots');
+  const panels = document.querySelectorAll('.snap-panel');
+  if (dots && panels.length) {
+    const btns = dots.querySelectorAll('.snap-dots__btn');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && e.intersectionRatio > 0.45) {
+            const id = e.target.id;
+            btns.forEach((b) => {
+              b.setAttribute('aria-current', b.getAttribute('data-target') === id ? 'true' : 'false');
+            });
+          }
+        });
+      },
+      { root: scroller, threshold: [0.45, 0.6] }
+    );
+    panels.forEach((p) => observer.observe(p));
+
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-target');
+        const el = id ? document.getElementById(id) : null;
+        el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  }
 </script>

@@ -6,11 +6,13 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  home?: boolean;
 }
 
 const {
   title = 'GRUPSTROY — столярные изделия на заказ',
   description = 'Каталог столярных изделий. Любая сложность. Ваш чертёж = наш итог. Москва и вся РФ.',
+  home = false,
 } = Astro.props;
 ---
 
@@ -20,21 +22,25 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#2F2F2F" />
+    <meta name="theme-color" content="#1a1a1a" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:image" content="/images/hero.jpg" />
+    <link rel="icon" href="/logo.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
-  <body>
+  <body class:list={[{ 'is-home': home }]}>
     <div class="wood-bg" aria-hidden="true"></div>
-    <Header />
-    <main class="main">
+    <Header home={home} />
+    <main class:list={['main', home && 'main--home']}>
       <slot />
     </main>
-    <Footer />
+    {!home && <Footer />}
   </body>
 </html>
