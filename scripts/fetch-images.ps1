@@ -3,7 +3,7 @@ $out = Join-Path $PSScriptRoot "..\public\images"
 
 $map = [ordered]@{
   # hero.jpg — не трогаем, фиксированное фото главной (public/images/hero.jpg)
-  "intro-catalog.jpg" = @{ tags = "kitchen,modern,interior"; lock = 2 }
+  # intro-catalog.jpg — фиксированное фото блока «Пять направлений» (public/images/intro-catalog.jpg)
   "catalog\ostrov-tortsevaya-stoleshnitsa.jpg" = @{ tags = "kitchen,island,wood"; lock = 10 }
   "catalog\falsh-panel-kholodilnik.jpg" = @{ tags = "kitchen,builtin,appliance"; lock = 11 }
   "catalog\stol-transformer.jpg" = @{ tags = "dining,table,wood"; lock = 12 }
