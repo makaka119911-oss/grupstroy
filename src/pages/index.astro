@@ -18,7 +18,7 @@ const blocks = categories.map((cat, i) => ({
       <div class="hero-reveal" id="heroReveal">
         <div class="hero-reveal__layer hero-reveal__layer--finish">
           <img
-            src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=1920&q=85"
+            src="/images/hero.jpg"
             alt=""
             width="1920"
             height="1080"
@@ -27,7 +27,7 @@ const blocks = categories.map((cat, i) => ({
         </div>
         <div class="hero-reveal__layer hero-reveal__layer--craft" id="heroCraft">
           <img
-            src="https://images.unsplash.com/photo-1504328345606-720bf6da6793?w=1920&q=85"
+            src="/images/catalog/ostrov-tortsevaya-stoleshnitsa.jpg"
             alt=""
             width="1920"
             height="1080"
@@ -78,7 +78,7 @@ const blocks = categories.map((cat, i) => ({
     {
       blocks.map((block) => (
         <section
-          class="snap-panel snap-panel--block"
+          class={`snap-panel snap-panel--block snap-panel--${block.slug}`}
           id={`panel-${block.slug}`}
           style={`--panel-bg: url(${block.heroImage})`}
         >

@@ -9,7 +9,7 @@ const { home = false } = Astro.props;
 
 const nav = [
   { href: home ? '#panel-hero' : '/', label: 'Главная' },
-  { href: home ? '#panel-blocks' : '/#catalog', label: 'Каталог' },
+  { href: home ? '#panel-blocks' : '/#panel-blocks', label: 'Каталог' },
   { href: '/uslugi', label: 'Услуги' },
   { href: '/zayavka', label: 'Заявка' },
 ];
@@ -82,9 +82,10 @@ const dots = home
   const burger = document.getElementById('burger');
   const mobileNav = document.getElementById('mobileNav');
   const backdrop = document.getElementById('mobileBackdrop');
-  const scroller = document.getElementById('homeScroll');
+  const getScroller = () => document.getElementById('homeScroll');
 
   function scrollToPanel(id: string) {
+    const scroller = getScroller();
     const el = document.getElementById(id);
     if (!el) return;
     if (scroller) {
@@ -150,11 +151,12 @@ const dots = home
     }
   });
 
-  if (scroller && header?.classList.contains('header--home')) {
-    scroller.addEventListener(
+  const homeScroller = getScroller();
+  if (homeScroller && header?.classList.contains('header--home')) {
+    homeScroller.addEventListener(
       'scroll',
       () => {
-        header.classList.toggle('header--scrolled', scroller.scrollTop > 48);
+        header.classList.toggle('header--scrolled', homeScroller.scrollTop > 48);
       },
       { passive: true }
     );
@@ -162,7 +164,7 @@ const dots = home
 
   const dots = document.getElementById('snapDots');
   const panels = document.querySelectorAll('.snap-panel');
-  if (dots && panels.length && scroller) {
+  if (dots && panels.length && homeScroller) {
     const btns = dots.querySelectorAll('.snap-dots__btn');
     const observer = new IntersectionObserver(
       (entries) => {
@@ -175,7 +177,7 @@ const dots = home
           }
         });
       },
-      { root: scroller, threshold: [0.45, 0.6] }
+      { root: homeScroller, threshold: [0.45, 0.6] }
     );
     panels.forEach((p) => observer.observe(p));
 

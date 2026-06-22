@@ -75,7 +75,7 @@ export const products: Product[] = [
     finish: 'Масло + воск, влагостойкий состав',
     term: 'от 4 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1556912173-3bb406ef7e77?w=1200&q=80',
+    image: '/images/catalog/ostrov-tortsevaya-stoleshnitsa.jpg',
     imageAlt: 'Кухонный остров из массива',
   },
   {
@@ -87,7 +87,7 @@ export const products: Product[] = [
     finish: 'Эмаль или масло под фасады',
     term: 'от 10 дней',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80',
+    image: '/images/catalog/falsh-panel-kholodilnik.jpg',
     imageAlt: 'Встроенная кухня с техникой',
   },
   {
@@ -99,7 +99,7 @@ export const products: Product[] = [
     finish: 'Масло Hardwax Oil',
     term: 'от 3 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1617806118583-47e982f64ce5?w=1200&q=80',
+    image: '/images/catalog/stol-transformer.jpg',
     imageAlt: 'Деревянный обеденный стол',
   },
   {
@@ -111,7 +111,7 @@ export const products: Product[] = [
     finish: 'Масло + патина по желанию',
     term: 'от 3 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1578898887939-d9e8a177e307?w=1200&q=80',
+    image: '/images/catalog/barnaya-stoyka.jpg',
     imageAlt: 'Барная стойка в интерьере',
   },
   {
@@ -123,7 +123,7 @@ export const products: Product[] = [
     finish: 'Масло, push-to-open',
     term: 'от 4 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1556909212-6e7cfaeeb21a?w=1200&q=80',
+    image: '/images/catalog/navesnye-shkafy-yasen.jpg',
     imageAlt: 'Навесные кухонные шкафы',
   },
   // БЛОК 2
@@ -136,7 +136,7 @@ export const products: Product[] = [
     finish: 'Масло / лак матовый',
     term: 'от 2 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1594026112284-02bb6d3352eb?w=1200&q=80',
+    image: '/images/catalog/stellaz-lestnitsa.jpg',
     imageAlt: 'Стеллаж-лесенка из дерева',
   },
   {
@@ -148,7 +148,7 @@ export const products: Product[] = [
     finish: 'Эмаль / шпон дуба',
     term: 'от 5 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1200&q=80',
+    image: '/images/catalog/shkaf-kupe-radius.jpg',
     imageAlt: 'Шкаф-купе в спальне',
   },
   {
@@ -160,7 +160,7 @@ export const products: Product[] = [
     finish: 'Масло на фасадах',
     term: 'от 3 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1502672265066-813c3525c0f1?w=1200&q=80',
+    image: '/images/catalog/penal-prihozhaya.jpg',
     imageAlt: 'Прихожая с системой хранения',
   },
   {
@@ -172,7 +172,7 @@ export const products: Product[] = [
     finish: 'Масло + воск',
     term: 'от 3 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1598300042249-d088f8e3f2d4?w=1200&q=80',
+    image: '/images/catalog/komod-yashchiki.jpg',
     imageAlt: 'Деревянный комод с ящиками',
   },
   {
@@ -184,7 +184,7 @@ export const products: Product[] = [
     finish: 'Масло, LED-подсветка',
     term: 'от 4 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1611269146501-5fb976a6ff4a?w=1200&q=80',
+    image: '/images/catalog/vitrina-kollektsii.jpg',
     imageAlt: 'Витрина с подсветкой',
   },
   // БЛОК 3
@@ -197,7 +197,7 @@ export const products: Product[] = [
     finish: 'Масло в тон стены',
     term: 'от 3 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1507089947368-24c45dfe6858?w=1200&q=80',
+    image: '/images/catalog/dver-nevidimka.jpg',
     imageAlt: 'Скрытая межкомнатная дверь',
   },
   {
@@ -209,7 +209,7 @@ export const products: Product[] = [
     finish: 'Масло / лазурь',
     term: 'от 2 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1600607687929-752b70d0c352?w=1200&q=80',
+    image: '/images/catalog/paneli-3d-reshetka.jpg',
     imageAlt: 'Деревянные рейки на стене',
   },
   {
@@ -221,7 +221,7 @@ export const products: Product[] = [
     finish: 'Масло + браширование',
     term: 'от 4 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
+    image: '/images/catalog/portal-kamin.jpg',
     imageAlt: 'Деревянный портал камина',
   },
   {
@@ -233,7 +233,7 @@ export const products: Product[] = [
     finish: 'Масло Hardwax',
     term: 'от 6 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1513694203231-719280a94d9e?w=1200&q=80',
+    image: '/images/catalog/lestnitsa-boltz.jpg',
     imageAlt: 'Деревянная лестница в доме',
   },
   {
@@ -245,7 +245,7 @@ export const products: Product[] = [
     finish: 'Грунт + эмаль / масло',
     term: 'от 2 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1200&q=80',
+    image: '/images/catalog/karniz-pilyastry.jpg',
     imageAlt: 'Деревянный карниз в интерьере',
   },
   // БЛОК 4
@@ -258,7 +258,7 @@ export const products: Product[] = [
     finish: 'Воск + масло',
     term: 'от 10 дней',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1605000796989-95ee41f4bea7?w=1200&q=80',
+    image: '/images/catalog/shkatulka-organayzer.jpg',
     imageAlt: 'Деревянная шкатулка ручной работы',
   },
   {
@@ -270,7 +270,7 @@ export const products: Product[] = [
     finish: 'Пищевое масло',
     term: 'от 5 дней',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1606760227091-3dd870d1f0d7?w=1200&q=80',
+    image: '/images/catalog/doski-end-grain.jpg',
     imageAlt: 'Разделочные доски end grain',
   },
   {
@@ -282,7 +282,7 @@ export const products: Product[] = [
     finish: 'Масло',
     term: 'от 7 дней',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=1200&q=80',
+    image: '/images/catalog/podstavka-noutbuk.jpg',
     imageAlt: 'Деревянная подставка для ноутбука',
   },
   {
@@ -294,7 +294,7 @@ export const products: Product[] = [
     finish: 'Пищевое масло',
     term: 'от 7 дней',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1515488042361-ee00e745ddd1?w=1200&q=80',
+    image: '/images/catalog/konstruktor-igrushki.jpg',
     imageAlt: 'Деревянные игрушки',
   },
   {
@@ -306,7 +306,7 @@ export const products: Product[] = [
     finish: 'Масло / золочение по ТЗ',
     term: 'от 2 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1618220179428-22790b461013?w=1200&q=80',
+    image: '/images/catalog/ramka-zerkalo.jpg',
     imageAlt: 'Зеркало в деревянной раме',
   },
   // БЛОК 5
@@ -319,7 +319,7 @@ export const products: Product[] = [
     finish: 'Масло для экстерьера',
     term: 'от 2 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1600607687644-c7171b42498f?w=1200&q=80',
+    image: '/images/catalog/skameyka-sad.jpg',
     imageAlt: 'Садовая скамья',
   },
   {
@@ -331,7 +331,7 @@ export const products: Product[] = [
     finish: 'Масло с УФ-фильтром',
     term: 'от 2 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?w=1200&q=80',
+    image: '/images/catalog/stol-piknik.jpg',
     imageAlt: 'Садовый деревянный стол',
   },
   {
@@ -343,7 +343,7 @@ export const products: Product[] = [
     finish: 'Масло для улицы',
     term: 'от 3 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=1200&q=80',
+    image: '/images/catalog/kacheli-divan.jpg',
     imageAlt: 'Уличные качели',
   },
   {
@@ -355,7 +355,7 @@ export const products: Product[] = [
     finish: 'Лазурь + масло',
     term: 'от 10 дней',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=1200&q=80',
+    image: '/images/catalog/podstavka-kashpo.jpg',
     imageAlt: 'Деревянная подставка для цветов',
   },
   {
@@ -367,7 +367,7 @@ export const products: Product[] = [
     finish: 'Масло для террасы',
     term: 'от 2 недель',
     price: 'по запросу',
-    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=1200&q=80',
+    image: '/images/catalog/terrasnaya-doska.jpg',
     imageAlt: 'Деревянная терраса у дома',
   },
 ];
