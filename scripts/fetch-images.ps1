@@ -2,7 +2,7 @@ $ua = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 $out = Join-Path $PSScriptRoot "..\public\images"
 
 $map = [ordered]@{
-  "hero.jpg" = @{ tags = "house,architecture,luxury,wood"; lock = 1 }
+  # hero.jpg — не трогаем, фиксированное фото главной (public/images/hero.jpg)
   "intro-catalog.jpg" = @{ tags = "kitchen,modern,interior"; lock = 2 }
   "catalog\ostrov-tortsevaya-stoleshnitsa.jpg" = @{ tags = "kitchen,island,wood"; lock = 10 }
   "catalog\falsh-panel-kholodilnik.jpg" = @{ tags = "kitchen,builtin,appliance"; lock = 11 }
