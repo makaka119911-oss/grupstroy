@@ -1,11 +1,14 @@
 const {
-  formatLead,
   formatBotMessage,
   tgApi,
   mainKeyboard,
   inlineLinks,
   WELCOME,
   HOW,
+  ADMIN_WELCOME,
+  getLeadChatIds,
+  isAdmin,
+  notifyLeadInbox,
   SITE,
 } = require('./lib/telegram');
 
@@ -17,8 +20,7 @@ module.exports = async (req, res) => {
     return res.status(401).end();
   }
 
-  const adminChat = process.env.TELEGRAM_CHAT_ID;
-  if (!adminChat) return res.status(500).end();
+  if (!getLeadChatIds().length) return res.status(500).end();
 
   let update;
   try {
@@ -36,9 +38,10 @@ module.exports = async (req, res) => {
 
   try {
     if (text === '/start' || text === '/menu') {
+      const welcome = isAdmin(from.id) ? ADMIN_WELCOME : WELCOME;
       await tgApi('sendMessage', {
         chat_id: chatId,
-        text: WELCOME,
+        text: welcome,
         reply_markup: mainKeyboard(),
       });
       await tgApi('sendMessage', {
@@ -104,11 +107,16 @@ module.exports = async (req, res) => {
       return res.status(200).json({ ok: true });
     }
 
-    await tgApi('sendMessage', {
-      chat_id: adminChat,
-      text: formatBotMessage(from, text),
-      disable_web_page_preview: true,
-    });
+    if (isAdmin(from.id)) {
+      await tgApi('sendMessage', {
+        chat_id: chatId,
+        text: 'Сообщения админа не пересылаем. Ждите заявки от клиентов и с сайта.',
+        reply_markup: mainKeyboard(),
+      });
+      return res.status(200).json({ ok: true });
+    }
+
+    await notifyLeadInbox(formatBotMessage(from, text));
 
     await tgApi('sendMessage', {
       chat_id: chatId,

@@ -14,15 +14,20 @@ const envPath = join(root, '.env.local');
 function loadEnv() {
   if (!existsSync(envPath)) return {};
   const out = {};
-  for (const line of readFileSync(envPath, 'utf8').split('\n')) {
-    const m = line.match(/^([A-Z_]+)=(.*)$/);
-    if (m) out[m[1]] = m[2].trim();
+  const raw = readFileSync(envPath, 'utf8').replace(/^\uFEFF/, '');
+  for (const line of raw.split('\n')) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith('#')) continue;
+    const idx = trimmed.indexOf('=');
+    if (idx === -1) continue;
+    out[trimmed.slice(0, idx).trim()] = trimmed.slice(idx + 1).trim();
   }
   return out;
 }
 
-const env = { ...process.env, ...loadEnv() };
-const token = env.TELEGRAM_BOT_TOKEN;
+const fileEnv = loadEnv();
+const env = { ...process.env, ...fileEnv };
+const token = fileEnv.TELEGRAM_BOT_TOKEN || env.TELEGRAM_BOT_TOKEN;
 const site = env.PUBLIC_SITE_URL || 'https://grupstroy.vercel.app';
 let secret = env.TELEGRAM_WEBHOOK_SECRET;
 

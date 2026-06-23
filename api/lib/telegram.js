@@ -6,9 +6,56 @@ function sanitize(v, max = 400) {
     .slice(0, max);
 }
 
+function getLeadChatIds() {
+  const parts = [
+    process.env.TELEGRAM_CHAT_ID,
+    process.env.TELEGRAM_EXTRA_CHAT_IDS,
+    process.env.TELEGRAM_ADMIN_IDS,
+  ]
+    .filter(Boolean)
+    .join(',');
+  return [...new Set(parts.split(',').map((s) => s.trim()).filter(Boolean))];
+}
+
+function getAdminIds() {
+  return getLeadChatIds();
+}
+
+function isAdmin(userId) {
+  return getAdminIds().includes(String(userId));
+}
+
+async function notifyLeadInbox(text) {
+  const ids = getLeadChatIds();
+  if (!ids.length) throw new Error('TELEGRAM_CHAT_ID missing');
+  for (const chatId of ids) {
+    await tgApi('sendMessage', {
+      chat_id: chatId,
+      text,
+      disable_web_page_preview: true,
+    });
+  }
+}
+
+async function tryNotifyClient(contact, text) {
+  const raw = sanitize(contact, 80);
+  const at = raw.match(/@([a-zA-Z0-9_]{5,32})/);
+  if (!at) return;
+  try {
+    await tgApi('sendMessage', {
+      chat_id: `@${at[1]}`,
+      text,
+      disable_web_page_preview: true,
+    });
+  } catch {
+    /* клиент должен хотя бы раз нажать /start в боте */
+  }
+}
+
 function formatLead(p) {
   return [
-    '🪚 GRUPSTROY — новая заявка с сайта',
+    '🪚 GRUPSTROY — новая заявка',
+    '📬 Входящие @GrupstroyWoodBot',
     '',
     `📦 Изделие: ${sanitize(p.item, 200) || '—'}`,
     `📐 Габариты: ${sanitize(p.length)} × ${sanitize(p.width)} × ${sanitize(p.height)} мм`,
@@ -27,7 +74,10 @@ function formatBotMessage(from, text) {
   const name = [from.first_name, from.last_name].filter(Boolean).join(' ');
   const user = from.username ? `@${from.username}` : 'без username';
   return [
-    '💬 Сообщение в боте @GrupstroyWoodBot',
+    '🪚 GRUPSTROY — новая заявка',
+    '📬 Входящие @GrupstroyWoodBot',
+    '',
+    '💬 Сообщение от клиента в боте',
     '',
     `👤 ${sanitize(name, 80)} (${user})`,
     `🆔 ${from.id}`,
@@ -93,14 +143,28 @@ const HOW = `Как заказать:
 
 Удобнее с формой — кнопка «Заявка на расчёт» или ${SITE}/zayavka`;
 
+const ADMIN_WELCOME = `👋 Режим администратора
+
+Сюда в @GrupstroyWoodBot будут приходить:
+• заявки с сайта grupstroy.vercel.app
+• сообщения клиентов в боте
+
+Проверка: отправьте тест с сайта или попросите клиента написать боту.`;
+
 module.exports = {
   SITE,
   sanitize,
   formatLead,
   formatBotMessage,
   tgApi,
+  getLeadChatIds,
+  getAdminIds,
+  isAdmin,
+  notifyLeadInbox,
+  tryNotifyClient,
   mainKeyboard,
   inlineLinks,
   WELCOME,
   HOW,
+  ADMIN_WELCOME,
 };

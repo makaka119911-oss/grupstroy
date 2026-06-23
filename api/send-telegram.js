@@ -1,4 +1,4 @@
-const { formatLead, tgApi } = require('./lib/telegram');
+const { formatLead, notifyLeadInbox, tryNotifyClient } = require('./lib/telegram');
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -8,8 +8,7 @@ module.exports = async (req, res) => {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'Method not allowed' });
 
-  const chatId = process.env.TELEGRAM_CHAT_ID;
-  if (!process.env.TELEGRAM_BOT_TOKEN || !chatId) {
+  if (!process.env.TELEGRAM_BOT_TOKEN || !process.env.TELEGRAM_CHAT_ID) {
     return res.status(500).json({ ok: false, error: 'TELEGRAM не настроен на сервере' });
   }
 
@@ -25,11 +24,11 @@ module.exports = async (req, res) => {
   }
 
   try {
-    await tgApi('sendMessage', {
-      chat_id: chatId,
-      text: formatLead(payload),
-      disable_web_page_preview: true,
-    });
+    await notifyLeadInbox(formatLead(payload));
+    await tryNotifyClient(
+      payload.contact,
+      '✅ GRUPSTROY: заявка принята! Ответим в течение 1 рабочего дня.\n\nБот: @GrupstroyWoodBot'
+    );
     return res.status(200).json({ ok: true });
   } catch (e) {
     return res.status(502).json({ ok: false, error: e.message });

@@ -60,17 +60,113 @@
 }
 
 @media (max-width: 1023px) {
+  .is-home {
+    overflow: hidden;
+    height: 100dvh;
+    height: 100svh;
+  }
+
+  .home-scroll {
+    height: 100dvh;
+    height: 100svh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    scroll-padding-top: calc(64px + env(safe-area-inset-top, 0px));
+  }
+
   .snap-panel {
     position: relative;
-    padding: 72px 0 48px;
-    min-height: auto;
+    min-height: 100dvh;
+    min-height: 100svh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: calc(72px + env(safe-area-inset-top, 0px)) 0 calc(24px + env(safe-area-inset-bottom, 0px));
+    box-sizing: border-box;
   }
 
   .snap-panel--hero {
-    min-height: 92dvh;
+    min-height: 100dvh;
+    min-height: 100svh;
+    justify-content: flex-end;
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+    overflow: hidden;
+  }
+
+  .snap-panel--intro {
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .snap-panel--block {
+    scroll-snap-stop: normal;
+    justify-content: flex-start;
+    padding-top: calc(68px + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .snap-panel--services,
+  .snap-panel--cta {
+    scroll-snap-stop: normal;
+    padding-bottom: calc(100px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .panel-divider {
+    display: none;
+  }
+
+  .intro-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    padding-bottom: 4px;
+    margin-inline: -4px;
+    padding-inline: 4px;
+    scrollbar-width: none;
+  }
+
+  .intro-chips::-webkit-scrollbar {
+    display: none;
+  }
+
+  .intro-chip {
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+
+  .block-preview {
     display: flex;
-    align-items: flex-end;
-    padding-bottom: 48px;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+    margin-inline: -4px;
+    padding-inline: 4px;
+    scrollbar-width: none;
+  }
+
+  .block-preview::-webkit-scrollbar {
+    display: none;
+  }
+
+  .preview-card {
+    flex: 0 0 min(76vw, 280px);
+    scroll-snap-align: start;
+  }
+
+  .scroll-hint {
+    display: block;
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px));
+    opacity: 0.85;
+    transform: translateX(-50%) scale(0.9);
   }
 }
 
@@ -83,9 +179,11 @@
 .snap-panel--hero .snap-panel__overlay--hero {
   background: linear-gradient(
     105deg,
-    rgba(14, 14, 14, 0.88) 0%,
-    rgba(14, 14, 14, 0.5) 42%,
-    rgba(14, 14, 14, 0.25) 100%
+    rgba(8, 8, 8, 0.94) 0%,
+    rgba(10, 10, 10, 0.88) 28%,
+    rgba(12, 12, 12, 0.62) 48%,
+    rgba(14, 14, 14, 0.32) 72%,
+    rgba(14, 14, 14, 0.18) 100%
   );
 }
 
@@ -349,6 +447,98 @@
 
 @media (min-width: 1024px) {
   .scroll-hint { display: block; }
+}
+
+/* Mobile section rail */
+.snap-mobile-bar {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .snap-mobile-bar {
+    display: block;
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    z-index: 180;
+    pointer-events: none;
+    transition: opacity 0.25s, transform 0.25s;
+  }
+
+  body.menu-open .snap-mobile-bar {
+    opacity: 0;
+    transform: translateY(12px);
+    pointer-events: none;
+  }
+
+  .snap-mobile-bar__shell {
+    pointer-events: auto;
+    padding: 10px 12px 12px;
+    border-radius: 18px;
+    background: rgba(14, 14, 14, 0.88);
+    backdrop-filter: blur(20px) saturate(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  }
+
+  .snap-mobile-bar__progress {
+    height: 2px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  .snap-mobile-bar__progress > span {
+    display: block;
+    height: 100%;
+    width: 0%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #a67c3d, var(--accent));
+    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .snap-mobile-bar__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .snap-mobile-bar__label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+
+  .snap-mobile-bar__dots {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .snap-mobile-bar__dot {
+    width: 6px;
+    height: 6px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.22);
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .snap-mobile-bar__dot[aria-current='true'] {
+    background: var(--accent);
+    transform: scale(1.35);
+  }
 }
 
 /* Section typography */
